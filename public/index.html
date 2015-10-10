@@ -5,11 +5,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            /*background-image: url("background.jpg");*/
+            background-color: #cccccc;}
+    </style>
 </head>
 <body>
-  
+
 <div class="container">
   <div class="jumbotron" id="search list">
       <div class="row">
@@ -25,18 +30,25 @@
       <p></p>
       <div class="row">
           <div class="col-md-3"><p>Street Address:</p></div>
-          <div class="col-md-6"><input type="text" class="form-control" id="Address"></div>
-          <div class="col-md-3"></div>
+          <div class="col-md-9"><input type="text" class="form-control" id="Address"></div>
       </div>
       <p></p>
       <div class="row">
           <div class="col-md-3"><p>Space Needed (ft<sup>2</sup>):</p></div>
-          <div class="col-md-3"><input type="number" class="form-control" id="SpaceNeeded"></div>
-          <div class="col-md-6"></div>
+          <div class="col-md-9"><input type="number" class="form-control" id="SpaceNeeded"></div>
+      </div>
+      <p></p>
+      <div class="row">
+          <div class="col-md-3"><p>Start Month (MM/YYYY):</p></div>
+          <div class="col-md-3"><input type="text" class="form-control" id="SearchStartMonth"></div>
+          <div class="col-md-3"><p>End Month (MM/YYYY):</p></div>
+          <div class="col-md-3"><input type="text" class="form-control" id="SearchEndMonth"></div>
       </div>
       <p></p>
       <div class="row">     
+
     <button type="button" class="btn btn-info btn-lg" id="search-button"><span class="glyphicon glyphicon-search"></span>Search</button>
+
       </div>   
   </div>
 </div>
@@ -70,7 +82,7 @@
   <input class="form-control" id="ex3" type="text">
 </div>
 
-        <p><label for="Address">Address of Storage:</label><input type="text" class="form-control" onFocus="geolocate()" id="Seller-Address autocomplete"></p>
+        <p><label for="Address">Address of Storage:</label></p><input type="text" class="form-control" onFocus="geolocate()" class="Seller-Address" id="autocomplete">
           
           <p><b>Months Available:</b></p>
 
