@@ -7,18 +7,14 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-image: url("background.jpg");
+            background-color: #cccccc;}
+    </style>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      
-      <a class="navbar-brand" href="#">Tetrispace</a>
-    </div>
-  </div>
-</nav>
-  
 <div class="container">
   <div class="jumbotron" id="search list">
       <div class="row">
@@ -34,18 +30,23 @@
       <p></p>
       <div class="row">
           <div class="col-md-3"><p>Street Address:</p></div>
-          <div class="col-md-6"><input type="text" class="form-control" id="Address"></div>
-          <div class="col-md-3"></div>
+          <div class="col-md-9"><input type="text" class="form-control" id="Address"></div>
       </div>
       <p></p>
       <div class="row">
           <div class="col-md-3"><p>Space Needed (ft<sup>2</sup>):</p></div>
-          <div class="col-md-3"><input type="number" class="form-control" id="SpaceNeeded"></div>
-          <div class="col-md-6"></div>
+          <div class="col-md-9"><input type="number" class="form-control" id="SpaceNeeded"></div>
+      </div>
+      <p></p>
+      <div class="row">
+          <div class="col-md-3"><p>Start Month (MM/YYYY):</p></div>
+          <div class="col-md-3"><input type="text" class="form-control" id="SearchStartMonth"></div>
+          <div class="col-md-3"><p>End Month (MM/YYYY):</p></div>
+          <div class="col-md-3"><input type="text" class="form-control" id="SearchEndMonth"></div>
       </div>
       <p></p>
       <div class="row">     
-    <button type="button" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-search"></span> Search</button>
+          <div class="col-md-3"><button type="button" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-search"></span> Search</button></div>
       </div>   
   </div>
 </div>
