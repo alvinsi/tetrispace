@@ -7,8 +7,17 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <style>
         body {
-            /*background-image: url("background.jpg");*/
+            background-image: url("../images/background.jpg");
+            background-repeat:no-repeat;
+            background-position:center;
             background-color: #cccccc;}
+        .jumbotron{
+            background: rgba(184, 138, 130, 0.5); 
+            position: relative;
+            top: 50px;
+            padding-right: 50px;
+            padding-left: 50px;
+        }
     </style>
 
 </head>
@@ -20,34 +29,34 @@
           <div class="col-md-12"><h1><center>Tetrispace</center></h1></div>
       </div>
       <div class="row">
-          <div class="col-md-3"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Make a Listing</button></div>
+          <div class="col-md-3"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><b>Make a Listing</b></button></div>
       </div>
-      <p></p>
+      <br>
       <div class="row">
-          <div class="col-md-11"><h3>Search for Listing:</h3></div>
+          <div class="col-md-11"><h3><b>Search for Listing:</b></h3></div>
       </div>
-      <p></p>
+      <br>
       <div class="row">
-          <div class="col-md-3"><p>Street Address:</p></div>
+          <div class="col-md-3"><p><b>Street Address:</b></p></div>
           <div class="col-md-9"><input type="text" class="form-control" id="Address"></div>
       </div>
-      <p></p>
+      <br>
       <div class="row">
-          <div class="col-md-3"><p>Space Needed (ft<sup>2</sup>):</p></div>
+          <div class="col-md-3"><p><b>Space Needed (ft<sup>2</sup>):</b></p></div>
           <div class="col-md-9"><input type="number" class="form-control" id="SpaceNeeded"></div>
       </div>
-      <p></p>
+      <br>
       
       <div class="row">
-        <div class="col-md-3"><p>Start Month:</p></div>
-        <div class='col-sm-3'><input type="month" class="form-control" id="SearchStartMonth"></div>
-          <div class="col-md-3"><p>End Month:</p></div>
+        <div class="col-md-3"><p><b>Start Month:</b></p></div>
+        <div class='col-md-3'><input type="month" class="form-control" id="SearchStartMonth"></div>
+          <div class="col-md-3"><p><b>End Month:</b></p></div>
           <div class="col-md-3"><input type="month" class="form-control" id="SearchEndMonth"></div>
       </div>
-      <p></p>
+      <br>
       <div class="row">     
 
-    <button type="button" class="btn btn-info btn-lg" id="search-button"><span class="glyphicon glyphicon-search"></span>Search</button>
+    <div class="col-md-12"><button type="button" class="btn btn-info btn-lg" id="search-button"><span class="glyphicon glyphicon-search"></span> Search</button></div>
 
       </div>   
   </div>
@@ -83,16 +92,16 @@
 </div>
 
         <p><label for="Address">Address of Storage:</label></p><input type="text" class="form-control" onFocus="geolocate()" class="Seller-Address" id="autocomplete">
-          
+          <br>
           <p><b>Months Available:</b></p>
 
             <div class="col-xs-6">
   <label for="Width">Start Month (MM/YYYY)</label>
-  <input class="form-control" id="StartMonth" type="text">
+  <input class="form-control" id="StartMonth" type="month">
 </div>
 <div class="col-xs-6">
   <label for="ex2">End Month (MM/YYYY)</label>
-  <input class="form-control" id="EndMonth" type="text">
+  <input class="form-control" id="EndMonth" type="month">
 </div>
         
         <p><label for="Phone">Phone Number:</label><input type="Phone" class="form-control" id="Phone"></p>
