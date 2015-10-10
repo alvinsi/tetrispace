@@ -20,12 +20,12 @@
 </nav>
   
 <div class="container">
-  <div class="jumbotron">
+  <div class="jumbotron" id="search list">
       <div class="row">
           <div class="col-md-12"><h1><center>Tetrispace</center></h1></div>
       </div>
       <div class="row">
-          <div class="col-md-3"><button type="button" class="btn btn-success">Make a Listing</button></div>
+          <div class="col-md-3"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Make a Listing</button></div>
       </div>
       <p></p>
       <div class="row">
@@ -45,10 +45,43 @@
       </div>
       <p></p>
       <div class="row">     
-    <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-search"></span> Search</a>
-      </div>
+    <button type="button" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-search"></span> Search</button>
+      </div>   
   </div>
+</div>
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title"><center>Make a Listing</center></h3>
+      </div>
+      <div class="modal-body">
+        <p><label for="usr">Name:</label><input type="text" class="form-control" id="Name"></p>
+        <p><label for="usr">Email:</label><input type="text" class="form-control" id="Email"></p>
+        <p><label for="usr">Available Space:</label><input type="text" class="form-control" id="Email"></p>
+          <p>Available Space</p>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <label for="focusedInput">Focused</label>
+                <input class="form-control" id="focusedInput" type="text">
+            </div>
+          </form>
+        <p><label for="usr">Address of Storage:</label><input type="text" class="form-control" id="Email"></p>
+        <p><label for="usr">Months Available:</label><input type="text" class="form-control" id="Email"></p>
+        <p><label for="usr">Phone Number:</label><input type="text" class="form-control" id="Email"></p>
+        <p><label for="usr">Capital One Identification Number:</label><input type="text" class="form-control" id="Email"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 </body>
