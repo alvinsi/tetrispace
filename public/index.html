@@ -9,15 +9,6 @@
 
 </head>
 <body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      
-      <a class="navbar-brand" href="#">Tetrispace</a>
-    </div>
-  </div>
-</nav>
   
 <div class="container">
   <div class="jumbotron" id="search list">
@@ -79,7 +70,7 @@
   <input class="form-control" id="ex3" type="text">
 </div>
 
-        <p><label for="Address">Address of Storage:</label><input type="text" class="form-control" id="Address"></p>
+        <p><label for="Address">Address of Storage:</label><input type="text" class="form-control" id="Seller-Address"></p>
           
           <p><b>Months Available:</b></p>
 
@@ -89,13 +80,14 @@
 </div>
 <div class="col-xs-6">
   <label for="ex2">End Month (MM/YYYY)</label>
-  <input class="form-control" id="End Month" type="text">
+  <input class="form-control" id="EndMonth" type="text">
 </div>
         
         <p><label for="Phone">Phone Number:</label><input type="Phone" class="form-control" id="Phone"></p>
         <p><label for="CapitalOne">Capital One Identification Number:</label><input type="password" class="form-control" id="CapitalOne"></p>
       </div>
       <div class="modal-footer">
+      	<button type="button" class="btn btn-default" id="submit-listing">Submit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -106,12 +98,13 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
   <!-- Google Maps Autocomplete -->
 <!--  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2zL0lYj-bL7GuSdw1fnDu205VnktbTPo&libraries=places"></script>
 -->
 <!--	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-	<script type="text/javascript" src="js/script.js"></script> -->
+	<script type="text/javascript" src="js/script.js"></script> 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIJ9XX2ZvRKCJcFRrl-lRanEtFUow4piM&signed_in=true&libraries=places&callback=initAutocomplete"
-        async defer></script>
+        async defer></script> -->
 </body>
 </html>
