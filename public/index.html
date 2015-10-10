@@ -36,7 +36,7 @@
       </div>
       <p></p>
       <div class="row">     
-    <button type="button" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-search"></span> Search</button>
+    <button type="button" class="btn btn-info btn-lg" id="search-button"><span class="glyphicon glyphicon-search"></span>Search</button>
       </div>   
   </div>
 </div>
@@ -70,7 +70,7 @@
   <input class="form-control" id="ex3" type="text">
 </div>
 
-        <p><label for="Address">Address of Storage:</label><input type="text" class="form-control" id="Seller-Address"></p>
+        <p><label for="Address">Address of Storage:</label><input type="text" class="form-control" onFocus="geolocate()" id="Seller-Address autocomplete"></p>
           
           <p><b>Months Available:</b></p>
 
@@ -100,11 +100,10 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="js/script.js"></script>
   <!-- Google Maps Autocomplete -->
-<!--  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2zL0lYj-bL7GuSdw1fnDu205VnktbTPo&libraries=places"></script>
--->
+<!-- 	// <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-GJTAXers--4zkLGDHoaC7vso9P9xwI&libraries=places"></script> -->
 <!--	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-	<script type="text/javascript" src="js/script.js"></script> 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIJ9XX2ZvRKCJcFRrl-lRanEtFUow4piM&signed_in=true&libraries=places&callback=initAutocomplete"
-        async defer></script> -->
+	<script type="text/javascript" src="js/script.js"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-GJTAXers--4zkLGDHoaC7vso9P9xwI&signed_in=true&libraries=places&callback=initAutocomplete"
+        async defer></script>
 </body>
 </html>
