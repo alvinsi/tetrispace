@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Case</title>
+  <title>Tetrispace</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <style>
         body {
             /*background-image: url("background.jpg");*/
             background-color: #cccccc;}
     </style>
+
 </head>
 <body>
 
@@ -38,11 +37,12 @@
           <div class="col-md-9"><input type="number" class="form-control" id="SpaceNeeded"></div>
       </div>
       <p></p>
+      
       <div class="row">
-          <div class="col-md-3"><p>Start Month (MM/YYYY):</p></div>
-          <div class="col-md-3"><input type="text" class="form-control" id="SearchStartMonth"></div>
-          <div class="col-md-3"><p>End Month (MM/YYYY):</p></div>
-          <div class="col-md-3"><input type="text" class="form-control" id="SearchEndMonth"></div>
+        <div class="col-md-3"><p>Start Month:</p></div>
+        <div class='col-sm-3'><input type="month" class="form-control" id="SearchStartMonth"></div>
+          <div class="col-md-3"><p>End Month:</p></div>
+          <div class="col-md-3"><input type="month" class="form-control" id="SearchEndMonth"></div>
       </div>
       <p></p>
       <div class="row">     
