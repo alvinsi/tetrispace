@@ -125,25 +125,34 @@ $(document).ready(function(){
 
 })
 
-
+//***************************************************************
 // Filter all listing to match search request
 function filter (data, spaceNeeded, startMonth, endMonth, lat, lon) {
 	var matches = [];
-	for (var listing in data){
-		if(inRange(lat, lon, listing.Latitude, listing.Longitude) && bigEnough(listing.Length, listing.Width, spaceNeeded) && timeMatch(startMonth, endMonth, listing.StartMonth, listing.EndMonth)){
-			matches.push(listing);
-		}
+	for (var i=0; i<data.length; i=i+1){
+		var listing = data[i];
+		if(range(lat, lon, listing.Latitude, listing.Longitude) < 30000){
+			if(bigEnough(listing.Length, listing.Width, spaceNeeded)){
+				if(timeMatch(startMonth, endMonth, listing.StartMonth, listing.EndMonth)){
+					matches.push(listing);
+					console.log(listing.Name);
+				}
+				else{console.log(listing + "fail on time");}
+			}
+			else{console.log(listing + "fail on size");}
+		} 
+		else{console.log(listing + "fail on location");}
 	}
 	return matches;
 }
 // in range, time matches, big enough
-function inRange (lat1, lon1, lat2, lon2){
+function range (lat1, lon1, lat2, lon2){
 	// Formula for distance between two sets of coordinates
 	var R = 6371000; // metres
-	var p1 = lat1.toRadians();
-	var p2 = lat2.toRadians();
-	var dp = (lat2-lat1).toRadians();
-	var dl = (lon2-lon1).toRadians();
+	var p1 = lat1 * Math.PI / 180;
+	var p2 = lat2 * Math.PI / 180;
+	var dp = (lat2-lat1) * Math.PI / 180;
+	var dl = (lon2-lon1) * Math.PI / 180;
 
 	var a = Math.sin(dp/2) * Math.sin(dp/2) +
         Math.cos(p1) * Math.cos(p2) *
@@ -151,7 +160,7 @@ function inRange (lat1, lon1, lat2, lon2){
 	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
 	var d = R * c; // distance in meters
-	return (d < 30000);
+	return d;
 }
 
 function bigEnough (listingLength, listingWidth, desiredSize){
@@ -182,3 +191,4 @@ function timeMatch (searchStart, searchEnd, listingStart, listingEnd){
 	}
 	return true;
 }
+
