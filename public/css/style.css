@@ -6,6 +6,7 @@
             background-attachment:fixed;
             font-family: "Raleway";
             color: white;
+            
         }
         .jumbotron{ 
             position: relative;
@@ -105,4 +106,24 @@ pre {
 
 .background-image.visible {
   opacity: 1;
+}
+
+/* unvisited link */
+a:link {
+    color: #FFFFFF;
+}
+
+/* visited link */
+a:visited {
+    color: #FFFFFF;
+}
+
+/* mouse over link */
+a:hover {
+    color: #000000;
+}
+
+/* selected link */
+a:active {
+    color: #000000;
 }
