@@ -134,6 +134,7 @@ function filter (data, spaceNeeded, startMonth, endMonth, lat, lon) {
 		if(range(lat, lon, listing.Latitude, listing.Longitude) < 30000){
 			if(bigEnough(listing.Length, listing.Width, spaceNeeded)){
 				if(timeMatch(startMonth, endMonth, listing.StartMonth, listing.EndMonth)){
+					listing.Distance(range(lat, lon, listing.Latitude, listing.Longitude));
 					matches.push(listing);
 					console.log(listing.Name);
 				}
