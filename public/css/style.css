@@ -76,9 +76,9 @@ pre {
 #logo{
     text-shadow: 1px 1px 1px #cccccc;
 }
-@media screen and (max-width: 368px) {
-    h1{
-        font-size:14px;
+@media (max-width: 368px) {
+    #logo{
+        font-size:5em !important;
     }
 }
 @import "compass/css3";
@@ -118,19 +118,26 @@ pre {
 /* unvisited link */
 a:link {
     color: #FFFFFF;
+    text-decoration: none;
 }
 
 /* visited link */
 a:visited {
     color: #FFFFFF;
+    text-decoration: none;
 }
 
 /* mouse over link */
 a:hover {
-    color: #000000;
+    color: #FFFFFF;
+    text-decoration: none;
+    opacity: 0.5;
 }
 
 /* selected link */
 a:active {
-    color: #000000;
+    color: #FFFFFF;
+    text-decoration: none;
+    opacity: 0.5;
 }
+button:focus {outline:0;}

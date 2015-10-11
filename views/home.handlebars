@@ -23,14 +23,14 @@
         <br>
         <div class="row">
           <div class="col-md-3">
-            <p><b>Street Address:</b></p>
+            <p><h4><b>Street Address:</b></h4></p>
           </div>
           <div class="col-md-9"><input type="text" class="form-control Address" id="autocomplete" onFocus="geolocate()"></div>
         </div>
         <br>
         <div class="row">
           <div class="col-md-3">
-            <p><b>Space Needed (ft<sup>2</sup>):</b></p>
+            <p><h4><b>Space Needed (ft<sup>2</sup>):</b></h4></p>
           </div>
           <div class="col-md-9">
             <input type="number" class="form-control" id="SpaceNeeded">
@@ -38,32 +38,29 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-md-3">
-            <p><b>Start Month:</b></p>
-          </div>
-          <div class='col-md-3'>
-            <input type="month" class="form-control" id="SearchStartMonth">
-          </div>
-          <div class="col-md-3 text-center">
-            <p><b>End Month:</b></p>
-          </div>
-          <div class="col-md-3">
-            <input type="month" class="form-control" id="SearchEndMonth">
-          </div>
-        </div>
+              <div class="col-xs-6">
+                <label for="SearchStartMonth"><h4>Start Month</h4></label>
+                <input class="form-control" id="SearchStartMonth" type="month">
+              </div>
+              <div class="col-xs-6">
+                <label for="SearchEndMonth"><h4>End Month</h4></label>
+                <input class="form-control" id="SearchEndMonth" type="month">
+              </div>
+            </div>
         <br>
         <br>
         <div class="row" >
-            <div class="col-md-2">
-                <a href="#" data-toggle="modal" data-target="#MakeListModal"><h3><b>Make a Listing</b></h3></a>
-          </div>
-            <div class="col-md-4"></div>
-          <div class="col-md-6 text-right">
+          <div class="col-md-12 text-right">
             <button type="button" class="btn btn-info btn-lg" id="search-button" onclick="document.getElementById('results').style.display='block'; return false;">
                 <span class="glyphicon glyphicon-search"></span> <a href="#results">Search</a>
             </button>
           </div>
-          
+        </div>
+        
+        <div>
+          <div class="col-md-12 text-right">
+            <a href="#" data-toggle="modal" data-target="#MakeListModal"><h3><b>Make a Listing</b></h3></a>
+          </div>
         </div>
 <!--
       </div>
@@ -130,11 +127,11 @@
             </p>
             <div class="row">
               <div class="col-xs-6">
-                <label for="Width">Start Month (MM/YYYY)</label>
+                <label for="Width">Start Month</label>
                 <input class="form-control" id="StartMonth" type="month">
               </div>
               <div class="col-xs-6">
-                <label for="ex2">End Month (MM/YYYY)</label>
+                <label for="ex2">End Month</label>
                 <input class="form-control" id="EndMonth" type="month">
               </div>
             </div>
