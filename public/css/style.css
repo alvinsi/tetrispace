@@ -22,10 +22,6 @@ body {
     padding-left: 50px;
     background:0;
 }
-property{
-    background color: 0;
-    opacity: 1;
-}
 .modal{
     color: black;
 }
@@ -49,6 +45,7 @@ h3 {
 	font-weight: 500;
 	line-height: 15.4px;
 }
+
 p {
 	font-family: Raleway;
 	font-size: 14px;
