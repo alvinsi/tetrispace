@@ -1,0 +1,59 @@
+
+        body {
+            background-color: #cccccc;
+            background:url("../../images/background.jpg") top right no-repeat;
+            background-attachment:fixed;
+            font-family: "Raleway";
+            color: white;
+        }
+        .jumbotron{
+            background: 0; 
+            position: relative;
+            top: 50px;
+            padding-right: 50px;
+            padding-left: 50px;
+        }
+        div.pac-container {
+   			z-index: 1050 !important;
+		}
+        h1 {
+	font-family: Raleway;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bolder;
+	line-height: 26.4px;
+}
+        
+h3 {
+	font-family: Raleway;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+}
+p {
+	font-family: Raleway;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+blockquote {
+	font-family: Raleway;
+	font-size: 21px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 30px;
+}
+pre {
+	font-family: Raleway;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+}
