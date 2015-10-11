@@ -28,7 +28,8 @@ app.get('/listings', function(req, res) {
 	var where = {};
 	var lat, lon, endMonth, startMonth;
 	var matches = [];
-	var data = [];
+
+	// /listings/?Latitude=35.9118905&Longitude=-79.05768269999999&StartMonth=2015-05&EndMonth=2015-08&SpaceNeeded=100 Gives 2 right values
 
 	if (query.hasOwnProperty('Latitude') && query.Latitude.length > 0 
 				&& query.hasOwnProperty('StartMonth') && query.StartMonth.length > 0
@@ -40,121 +41,9 @@ app.get('/listings', function(req, res) {
 		endMonth = query.StartMonth;
 		spaceNeeded = query.SpaceNeeded;
 		db.listing.findAll().then(function(listings){
-			console.log("hi");
+			matches = filterData.filterAll(listings, spaceNeeded, startMonth, endMonth, lat, lon);
+			res.json(matches);
 		})
-		data = [
-	  {
-	    "id": 1,
-	    "CapitalOneId": "abcdefghijk",
-	    "Name": "William Yang",
-	    "Email": "me@gmail.com",
-	    "Address": "123 Main St., New York, NY",
-	    "Price": 12,
-	    "Height": 15,
-	    "Width": 5,
-	    "Length": 10,
-	    "Phone": 1234567890,
-	    "Latitude": 35.9118905,
-	    "Longitude": -79.05768269999999,
-	    "StartMonth": "2015-10",
-	    "EndMonth": "2015-11",
-	    "createdAt": "2015-10-11T06:00:55.376Z",
-	    "updatedAt": "2015-10-11T06:00:55.376Z"
-	  },
-	  {
-	    "id": 2,
-	    "CapitalOneId": "abcdefghijk",
-	    "Name": "perfect",
-	    "Email": "me@gmail.com",
-	    "Address": "123 abc road",
-	    "Price": 10.5,
-	    "Height": 15,
-	    "Width": 5,
-	    "Length": 100,
-	    "Phone": 1234567890,
-	    "Latitude": 35.9118905,
-	    "Longitude": -79.05768269999999,
-	    "StartMonth": "2015-03",
-	    "EndMonth": "2015-10",
-	    "createdAt": "2015-10-11T07:44:17.573Z",
-	    "updatedAt": "2015-10-11T07:44:17.573Z"
-	  },
-	  {
-	    "id": 3,
-	    "CapitalOneId": "qwertyuiop",
-	    "Name": "too small",
-	    "Email": "me@gmail.com",
-	    "Address": "123 ekdkd road",
-	    "Price": 105.5,
-	    "Height": 15,
-	    "Width": 5,
-	    "Length": 10,
-	    "Phone": 1234567890,
-	    "Latitude": 35.9118905,
-	    "Longitude": -79.05768269999999,
-	    "StartMonth": "2015-05",
-	    "EndMonth": "2015-12",
-	    "createdAt": "2015-10-11T07:49:22.719Z",
-	    "updatedAt": "2015-10-11T07:49:22.719Z"
-	  },
-	  {
-	    "id": 4,
-	    "CapitalOneId": "qwertyuiop",
-	    "Name": "wrong time",
-	    "Email": "me@gmail.com",
-	    "Address": "123 abc street",
-	    "Price": 100.5,
-	    "Height": 15,
-	    "Width": 5,
-	    "Length": 100,
-	    "Phone": 1234567890,
-	    "Latitude": 35.9118905,
-	    "Longitude": -79.05768269999999,
-	    "StartMonth": "2015-04",
-	    "EndMonth": "2015-03",
-	    "createdAt": "2015-10-11T07:50:42.980Z",
-	    "updatedAt": "2015-10-11T07:50:42.980Z"
-	  },
-	  {
-	    "id": 5,
-	    "CapitalOneId": "qwertyuiop",
-	    "Name": "out of range",
-	    "Email": "me@gmail.com",
-	    "Address": "123 abasdf road",
-	    "Price": 12.2,
-	    "Height": 15,
-	    "Width": 5,
-	    "Length": 100,
-	    "Phone": 1234567890,
-	    "Latitude": 35.9118905,
-	    "Longitude": -69.05768269999999,
-	    "StartMonth": "2015-10",
-	    "EndMonth": "2015-03",
-	    "createdAt": "2015-10-11T07:52:00.551Z",
-	    "updatedAt": "2015-10-11T07:52:00.551Z"
-	  },
-	  {
-	    "id": 6,
-	    "CapitalOneId": "qwertyuiop",
-	    "Name": "also perfect",
-	    "Email": "me@gmail.com",
-	    "Address": "323 abc road",
-	    "Price": 10.52,
-	    "Height": 15,
-	    "Width": 5,
-	    "Length": 100,
-	    "Phone": 1234567890,
-	    "Latitude": 35.9118905,
-	    "Longitude": -79.05768269999999,
-	    "StartMonth": "2014-10",
-	    "EndMonth": "2016-04",
-	    "createdAt": "2015-10-11T07:53:47.610Z",
-	    "updatedAt": "2015-10-11T07:53:47.610Z"
-	  }
-	];
-		
-		matches = filterData.filterAll(data, spaceNeeded, startMonth, endMonth, lat, lon);
-		res.json(matches);
 	} else {
 		db.listing.findAll().then(function(listings){
 			res.json(listings);

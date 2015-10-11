@@ -3,7 +3,7 @@
 exports.filterAll = function filterAll(data, spaceNeeded, startMonth, endMonth, lat, lon) {
 	var matches = [];
 	for (var i=0; i<data.length; i++){
-		var listing = data[i];
+		var listing = data[i].dataValues;
 		if(this.range(lat, lon, listing.Latitude, listing.Longitude) < 30000){
 			if(this.bigEnough(listing.Length, listing.Width, spaceNeeded)){
 				if(this.timeMatch(startMonth, endMonth, listing.StartMonth, listing.EndMonth)){

@@ -18,8 +18,6 @@ function initAutocomplete() {
   autocomplete2.addListener('place_changed', fillInAddress2);
 }
 
-
-
 // [START region_fillform]
 function fillInAddress() {
   // Get the place details from the autocomplete object.
@@ -75,26 +73,33 @@ $(document).ready(function(){
 		var price = $("#Asking-Price").val();
 		var address = $("#autocomplete2").val();
 
-		var listing = {
-	    "CapitalOneId": "testdsdsad",
+	  $.ajax({
+      url: './listings/',
+      type: 'post',
+      dataType: 'json',
+      success: function (data) {
+      	alert("Listing Successfully Updated")
+      },
+      error: function(e) {
+		    alert("Oops! Something Went Wrong, Please Try Again!")
+		  },
+      data: JSON.stringify({
+	    "CapitalOneId": "hallooooo",
 	    "Name": "also perfect",
 	    "Email": "me@gmail.com",
 	    "Address": "323 abc road",
-	    "Price": 10.52,
-	    "Height": 15,
-	    "Width": 5,
-	    "Length": 100,
-	    "Phone": 1234567890,
-	    "Latitude": 35.9118905,
-	    "Longitude": -79.05768269999999,
+	    "Price": "10.52",
+	    "Height": "15",
+	    "Width": "5",
+	    "Length": "100",
+	    "Phone": "1234567890",
+	    "Latitude": "35.9118905",
+	    "Longitude": "-79.05768269999999",
 	    "StartMonth": "2014-10",
 	    "EndMonth": "2016-04"
-	  };
-
-		$.post("./listings",
-			listing,
-		function(data, status){
-		});
+	  	}),
+	  	contentType: "application/json"
+    });
 	});
 
 	// Search request
