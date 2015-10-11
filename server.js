@@ -26,17 +26,17 @@ app.get('/listings', function(req, res) {
 	var query = req.query;
 	var where = {};
 
-	if (query.hasOwnProperty('completed') && query.completed === 'true') {
-		where.completed = true;
-	} else if (query.hasOwnProperty('completed') && query.completed === 'false') {
-		where.completed = false;
-	}
+	// if (query.hasOwnProperty('completed') && query.completed === 'true') {
+	// 	where.completed = true;
+	// } else if (query.hasOwnProperty('completed') && query.completed === 'false') {
+	// 	where.completed = false;
+	// }
 
-	if (query.hasOwnProperty('q') && query.q.length > 0) {
-		where.description = {
-			$like: '%' + query.q + '%'
-		};
-	}
+	// if (query.hasOwnProperty('q') && query.q.length > 0) {
+	// 	where.description = {
+	// 		$like: '%' + query.q + '%'
+	// 	};
+	// }
 
 	db.listing.findAll({where: where}).then(function(listings){
 		res.json(listings);
@@ -62,7 +62,7 @@ app.get('/listings/:id', function(req, res) {
 
 // POST /listings
 app.post('/listings', function(req, res) {
-	var body = _.pick(req.body, 'description', 'completed');
+	var body = _.pick(req.body, 'CapitalOneId', 'Name', 'Email', 'Address', 'Price', 'Height', 'Width', 'Length', 'Phone', 'Latitude', 'Longitude', 'StartMonth', 'EndMonth');
 
 	db.listing.create(body).then(function (listing) {
 		res.json(listing.toJSON());
@@ -126,3 +126,4 @@ db.sequelize.sync().then(function() {
 		console.log('Express listening on port: ' + PORT);
 	});
 });
+

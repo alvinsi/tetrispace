@@ -118,7 +118,7 @@ $(document).ready(function(){
 		console.log(spaceNeeded);
 		console.log(lat);
 		console.log(lon);
-
+        console.log("is anything working");
 //TEST***************************************************
 data = [{
 CapitalOneID: "abcdefghijk",

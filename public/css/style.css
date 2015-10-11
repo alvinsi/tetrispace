@@ -1,6 +1,6 @@
 
         body {
-            background: 0;/*
+            background-color: #cccccc;/*
             background:url("../../images/background.jpg") top right no-repeat;*/
             background-attachment:fixed;
             font-family: "Raleway";
@@ -11,9 +11,7 @@
             top: 50px;
             padding-right: 50px;
             padding-left: 50px;
-        }
-        .emptyBck {
-            background: 0;
+            background:0;
         }
         .modal{
             color: black;
