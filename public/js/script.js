@@ -202,9 +202,30 @@ displayResults(data);
 		// console.log(url);
 		// $.get(url,
 		// function(data, status){
-		//		var matches = filter(data, spaceNeeded, startMonth, endMonth, lat, lon);
+		//		matches = filter(data, spaceNeeded, startMonth, endMonth, lat, lon);
 		//		displayResults(matches);
 		// });
+	});
+	var matches;
+
+// Submit POST request for Capital One money transfer
+	$("#submit-purchase").click(function(e){
+		var buyerCapitalOneID = $("#Buyer-CapitalOne").val();
+		var listingID = parseInt(e.toElement.id.substring(8));
+		var sellerCapitalOneID = matches[listingID].CapitalOneID;
+    var url= 'http://api.reimaginebanking.com/accounts/' + buyerCapitalOneID + '/transfers?key=ef0c1299de8c6e82cb65534aabeca2d4';
+    var body = {
+  "medium": "balance",
+  "payee_id": sellerCapitalOneID,
+  "amount": matches[listingID].Price,
+  "transaction_date": new Date(),
+  "status": "pending",
+  "description": "Paying for shared rental storage space"
+		};
+    $.post(url, body, function(data, status){
+    	// Maybe do something?
+    	alert("Payment processed");
+    });
 	});
 
 })
@@ -214,7 +235,7 @@ function displayResults(listings){
 	$("#results-display").empty();
 	for(var i=0; i<listings.length; i=i+1){
 		listing = listings[i];
-		template = '<div class="row"><div class="col-md-3"><p><b>Price:</b></p></div><div class="col-md-3"><p>$' + listing.Price + '</p></div><div class="col-md-3"><p><b>Space Available:</b></p></div><div class="col-md-3"><p>' + listing.Width + 'ft &times; ' + listing.Length + 'ft &times; ' + listing.Height + 'ft high</p></div></div><div class="row"><div class="col-md-3"><p><b>Location:</b></p></div><div class="col-md-6"><p>' + listing.Address + '</p></div><div class="col-md-3"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#BuyModal"><b>Proceed</b></button></div></div><br>';
+		template = '<div class="row"><div class="col-md-3"><p><b>Price:</b></p></div><div class="col-md-3"><p>$' + listing.Price + '</p></div><div class="col-md-3"><p><b>Space Available:</b></p></div><div class="col-md-3"><p>' + listing.Width + 'ft &times; ' + listing.Length + 'ft &times; ' + listing.Height + 'ft high</p></div></div><div class="row"><div class="col-md-3"><p><b>Location:</b></p></div><div class="col-md-6"><p>' + listing.Address + '</p></div><div class="col-md-3"><button type="button" class="btn btn-success" id="listing-' + i + '" data-toggle="modal" data-target="#BuyModal"><b>Proceed</b></button></div></div><br>';
 		$('#results-display').append(template);
 	}
 }
