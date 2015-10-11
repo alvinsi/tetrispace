@@ -128,13 +128,11 @@ a:visited {
 a:hover {
     color: #FFFFFF;
     text-decoration: none;
-    opacity: 0.5;
 }
 
 /* selected link */
 a:active {
     color: #FFFFFF;
     text-decoration: none;
-    opacity: 0.5;
 }
 button:focus {outline:0;}
