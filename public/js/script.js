@@ -75,11 +75,11 @@ $(document).ready(function(){
 		var listing = {
 			Name: name,
 			Email: email,
-			Width: width,
-			Length: length,
+			Width: parseInt(width),
+			Length: parseInt(length),
 			Height: height,
-			Latitude: lat,
-			Longitude: lon,
+			Latitude: parseFloat(lat),
+			Longitude: parseFloat(lon),
 			StartMonth: startMonth,
 			EndMonth: endMonth,
 			Phone: phone,
@@ -108,17 +108,77 @@ $(document).ready(function(){
 
 	// Search request
 	$('#search-button').click(function(){
-		var spaceNeeded = $("#SpaceNeeded").val();
+		var spaceNeeded = parseInt($("#SpaceNeeded").val());
 		var startMonth = $("#SearchStartMonth").val();
 		var endMonth = $("#SearchEndMonth").val();
-
-		var url = "listings/Latitude=" + lat + "&Longitude=" + lon + "&SpaceNeeded=" + spaceNeeded + "&StartMonth=" + startMonth + "&EndMonth=" + endMonth;
-		console.log(url);
+		console.log(spaceNeeded);
+		console.log(lat);
+		console.log(lon);
+		// var url = "listings/Latitude=" + lat + "&Longitude=" + lon + "&SpaceNeeded=" + spaceNeeded + "&StartMonth=" + startMonth + "&EndMonth=" + endMonth;
+		// console.log(url);
 		// $.get(url,
 		// function(data, status){
-
+		//		var matches = filter(data, spaceNeeded, startMonth, endMonth, lat, lon);
 		// });
 	});
 
 
 })
+
+
+// Filter all listing to match search request
+function filter (data, spaceNeeded, startMonth, endMonth, lat, lon) {
+	var matches = [];
+	for (var listing in data){
+		if(inRange(lat, lon, listing.Latitude, listing.Longitude) && bigEnough(listing.Length, listing.Width, spaceNeeded) && timeMatch(startMonth, endMonth, listing.StartMonth, listing.EndMonth)){
+			matches.push(listing);
+		}
+	}
+	return matches;
+}
+// in range, time matches, big enough
+function inRange (lat1, lon1, lat2, lon2){
+	// Formula for distance between two sets of coordinates
+	var R = 6371000; // metres
+	var p1 = lat1.toRadians();
+	var p2 = lat2.toRadians();
+	var dp = (lat2-lat1).toRadians();
+	var dl = (lon2-lon1).toRadians();
+
+	var a = Math.sin(dp/2) * Math.sin(dp/2) +
+        Math.cos(p1) * Math.cos(p2) *
+        Math.sin(dl/2) * Math.sin(dl/2);
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+	var d = R * c; // distance in meters
+	return (d < 30000);
+}
+
+function bigEnough (listingLength, listingWidth, desiredSize){
+	return (desiredSize < (listingLength*listingWidth));
+}
+
+function timeMatch (searchStart, searchEnd, listingStart, listingEnd){
+	var searchStartYear = parseInt(searchStart.substring(0,4));
+	var searchStartMonth = parseInt(searchStart.substring(5, 7));
+	var searchEndYear = parseInt(searchEnd.substring(0,4));
+	var searchEndMonth = parseInt(searchEnd.substring(5, 7));	
+	var listingStartYear = parseInt(listingStart.substring(0,4));
+	var listingStartMonth = parseInt(listingStart.substring(5, 7));
+	var listingEndYear = parseInt(listingEnd.substring(0,4));
+	var listingEndMonth = parseInt(listingEnd.substring(5, 7));
+
+	if(searchStartYear < listingStartYear){
+		return false;
+	}
+	else if(searchStartYear == listingStartYear && searchStartMonth < listingStartMonth){
+		return false;
+	}
+	else if(searchEndYear > listingEndYear){
+		return false;
+	}
+	else if(searchEndYear == listingEndYear && searchEndMonth > listingEndMonth){
+		return false;
+	}
+	return true;
+}
