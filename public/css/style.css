@@ -1,6 +1,6 @@
 
         body {
-            background-color: #cccccc;/*
+            /*
             background:url("../../images/background.jpg") top right no-repeat;*/
             background-attachment:fixed;
             font-family: "Raleway";
@@ -12,6 +12,10 @@
             padding-right: 50px;
             padding-left: 50px;
             background:0;
+        }
+        property{
+            background color: 0;
+            opacity: 1;
         }
         .modal{
             color: black;
@@ -59,4 +63,45 @@ pre {
 	font-variant: normal;
 	font-weight: 400;
 	line-height: 18.5714px;
+}
+#logo{
+    text-shadow: 1px 1px 1px #cccccc;
+}
+@media screen and (max-width: 368px) {
+    h1{
+        font-size:14px;
+    }
+}
+@import "compass/css3";
+
+@-webkit-keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.background-image {
+  background: url('http://images2.alphacoders.com/667/66702.jpg') no-repeat center center fixed;
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  
+  opacity: 0;
+  
+  -webkit-animation-name: fade-in;
+  -webkit-animation-duration: 2.5s;
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-delay: 0.5s;
+}
+
+.background-image.visible {
+  opacity: 1;
 }
