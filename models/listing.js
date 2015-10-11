@@ -93,20 +93,3 @@ module.exports = function (sequelize, DataTypes) {
 		},
 	});
 }
-
-// CapitalOneID: "abcdefghijk"
-// Name: "William Yang"
-// Email: "me@gmail.com"
-// Height: "15"
-// Width: "5"
-// Length: "10"
-// Phone: "1234567890"
-// Latitude: 35.9118905
-// Longitude: -79.05768269999999
-
-// StartMonth: "2015-10"
-// EndMonth: "2015-11"
-
-
-
-
