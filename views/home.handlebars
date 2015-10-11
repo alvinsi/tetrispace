@@ -1,5 +1,5 @@
 <div class="container">
-      <div class="jumbotron">
+      <div class="jumbotron emptyBck">
         <div class="row">
           <div class="col-md-12">
             <h1>
@@ -53,6 +53,9 @@
         <br>
         <div class="row" >
           <div class="col-md-3">
+              <button type="button" class="btn btn-info">
+      <span class="glyphicon glyphicon-search"></span> Search
+    </button>
             <button type="button" class="btn btn-info btn-lg" id="search-button" onclick="document.getElementById('results').style.display='block'; return false;">
             <span class="glyphicon glyphicon-search"></span> Search
             </button>
@@ -109,7 +112,7 @@
             </div>
           </div>
           <br> 
-          <!---- end copy--->
+          <!---- end copy--->  
         </div>
       </div>
     </div>
@@ -158,7 +161,8 @@
               </div>
             </div>
             </p>
-            <p><label for="Phone">Phone Number:</label><input type="Phone" class="form-control" id="Phone"></p>
+            <p><label for="Phone">Phone Number:</label><input type="text" class="form-control" id="Phone"></p>
+        <p><label for="Asking-Price">Asking Price:</label><input type="text" class="form-control" id="Asking-Price"></p>
             <p><label for="CapitalOne">Capital One Identification Number:</label><input type="password" class="form-control" id="CapitalOne"></p>
           </div>
           <div class="modal-footer">

@@ -1,17 +1,22 @@
 
         body {
-            background-color: #cccccc;/*
+            background: 0;/*
             background:url("../../images/background.jpg") top right no-repeat;*/
             background-attachment:fixed;
             font-family: "Raleway";
             color: white;
         }
-        .jumbotron{
-            background: 0; 
+        .jumbotron{ 
             position: relative;
             top: 50px;
             padding-right: 50px;
             padding-left: 50px;
+        }
+        .emptyBck {
+            background: 0;
+        }
+        .modal{
+            color: black;
         }
         div.pac-container {
    			z-index: 1050 !important;
