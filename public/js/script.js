@@ -22,7 +22,6 @@ function initAutocomplete() {
 function fillInAddress() {
   // Get the place details from the autocomplete object.
   var coords = autocomplete.getPlace().geometry.location;
-  console.log(coords);
   lat = coords.J;
   lon = coords.M;
 }
@@ -84,19 +83,19 @@ $(document).ready(function(){
 		    alert("Oops! Something Went Wrong, Please Try Again!")
 		  },
       data: JSON.stringify({
-	    "CapitalOneId": "hallooooo",
-	    "Name": "also perfect",
-	    "Email": "me@gmail.com",
-	    "Address": "323 abc road",
-	    "Price": "10.52",
-	    "Height": "15",
-	    "Width": "5",
-	    "Length": "100",
-	    "Phone": "1234567890",
-	    "Latitude": "35.9118905",
-	    "Longitude": "-79.05768269999999",
-	    "StartMonth": "2014-10",
-	    "EndMonth": "2016-04"
+	    "CapitalOneId": capitalOneID,
+	    "Name": name,
+	    "Email": email,
+	    "Address": address,
+	    "Price": price,
+	    "Height": height,
+	    "Width": width,
+	    "Length": length,
+	    "Phone": phone,
+	    "Latitude": lat,
+	    "Longitude": lon,
+	    "StartMonth": startMonth,
+	    "EndMonth": endMonth
 	  	}),
 	  	contentType: "application/json"
     });
@@ -107,93 +106,43 @@ $(document).ready(function(){
 		var spaceNeeded = parseInt($("#SpaceNeeded").val());
 		var startMonth = $("#SearchStartMonth").val();
 		var endMonth = $("#SearchEndMonth").val();
-		console.log(spaceNeeded);
-		console.log(lat);
-		console.log(lon);
-        console.log("is anything working");
+
+		var url = "./listings/?Latitude=" + lat + "&Longitude=" + lon + "&SpaceNeeded=" + spaceNeeded + "&StartMonth=" + startMonth + "&EndMonth=" + endMonth;
+		console.log(url);
 //TEST***************************************************
-
-
-data = [{
-CapitalOneID: "abcdefghijk",
-Email: "me@gmail.com",
-EndMonth: "2015-10",
-Height: "15",
-Latitude: 35.9118905,
-Length: "100",
-Longitude: -79.05768269999999,
-Name: "perfect",
-Phone: "1234567890",
-StartMonth: "2015-03",
-Width: "5",
-Price: "10.50",
-Address: "123 abc road"
-},
-{
-CapitalOneID: "qwertyuiop",
-Email: "me@gmail.com",
-EndMonth: "2015-12",
-Height: "15",
-Latitude: 35.9118905,
-Length: "10",
-Longitude: -79.05768269999999,
-Name: "too small",
-Phone: "1234567890",
-StartMonth: "2015-05",
-Width: "5",
-Price: "105.50",
-Address: "123 ekdkd road"
-},
-{
-CapitalOneID: "qwertyuiop",
-Email: "me@gmail.com",
-EndMonth: "2015-03",
-Height: "15",
-Latitude: 35.9118905,
-Length: "100",
-Longitude: -79.05768269999999,
-Name: "wrong time",
-Phone: "1234567890",
-StartMonth: "2015-04",
-Width: "5",
-Price: "100.50",
-Address: "123 abc street"
-},
-{
-	CapitalOneID: "qwertyuiop",
-	Email: "me@gmail.com",
-	EndMonth: "2015-03",
-	Height: "15",
-	Latitude: 35.9118905,
-	Length: "100",
-	Longitude: -69.05768269999999,
-	Name: "out of range",
-	Phone: "1234567890",
-	StartMonth: "2015-10",
-	Width: "5",
-	Price: "12.20",
-	Address: "123 abasdf road"
-},
-{
-	CapitalOneID: "qwertyuiop",
-	Email: "me@gmail.com",
-	EndMonth: "2016-04",
-	Height: "15",
-	Latitude: 35.9118905,
-	Length: "100",
-	Longitude: -79.05768269999999,
-	Name: "also perfect",
-	Phone: "1234567890",
-	StartMonth: "2014-10",
-	Width: "5",
-	Price: "10.52",
-	Address: "323 abc road"
-}];
 
 // Latitude: 35.9118905, Longitude: -79.05768269999999, space 100 date: may-aug 2015
 
-displayResults(data);
-//***************************************************
+		// displayResults(data);
+
+		// $.ajax({
+  //     url: './listings/',
+  //     type: 'post',
+  //     dataType: 'json',
+  //     success: function (data) {
+  //     	alert("Listing Successfully Updated")
+  //     },
+  //     error: function(e) {
+		//     alert("Oops! Something Went Wrong, Please Try Again!")
+		//   },
+  //     data: JSON.stringify({
+	 //    "CapitalOneId": "hallooooo",
+	 //    "Name": "also perfect",
+	 //    "Email": "me@gmail.com",
+	 //    "Address": "323 abc road",
+	 //    "Price": "10.52",
+	 //    "Height": "15",
+	 //    "Width": "5",
+	 //    "Length": "100",
+	 //    "Phone": "1234567890",
+	 //    "Latitude": "35.9118905",
+	 //    "Longitude": "-79.05768269999999",
+	 //    "StartMonth": "2014-10",
+	 //    "EndMonth": "2016-04"
+	 //  	}),
+	 //  	contentType: "application/json"
+  //   });
+
 		// var url = "listings/Latitude=" + lat + "&Longitude=" + lon + "&SpaceNeeded=" + spaceNeeded + "&StartMonth=" + startMonth + "&EndMonth=" + endMonth;
 		// console.log(url);
 		// $.get(url,
@@ -202,6 +151,9 @@ displayResults(data);
 		//		displayResults(matches);
 		// });
 	});
+
+//***************************************************
+
 	var matches;
 
 // Submit POST request for Capital One money transfer
