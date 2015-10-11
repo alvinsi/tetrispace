@@ -72,6 +72,8 @@ $(document).ready(function(){
 		var endMonth = $("#EndMonth").val();
 		var phone = $("#Phone").val();
 		var capitalOneID = $("#CapitalOne").val();
+		var price = $("#Asking-Price").val();
+		var address = $("#autocomplete2").val();
 		var listing = {
 			Name: name,
 			Email: email,
@@ -83,7 +85,9 @@ $(document).ready(function(){
 			StartMonth: startMonth,
 			EndMonth: endMonth,
 			Phone: phone,
-			CapitalOneID: capitalOneID
+			CapitalOneID: capitalOneID,
+			Price: parseFloat(price),
+			Address: address
 		};
 		console.log(listing);
 		// Example listing
@@ -114,6 +118,86 @@ $(document).ready(function(){
 		console.log(spaceNeeded);
 		console.log(lat);
 		console.log(lon);
+
+//TEST***************************************************
+data = [{
+CapitalOneID: "abcdefghijk",
+Email: "me@gmail.com",
+EndMonth: "2015-10",
+Height: "15",
+Latitude: 35.9118905,
+Length: "100",
+Longitude: -79.05768269999999,
+Name: "perfect",
+Phone: "1234567890",
+StartMonth: "2015-03",
+Width: "5",
+Price: "10.50",
+Address: "123 abc road"
+},
+{
+CapitalOneID: "qwertyuiop",
+Email: "me@gmail.com",
+EndMonth: "2015-12",
+Height: "15",
+Latitude: 35.9118905,
+Length: "10",
+Longitude: -79.05768269999999,
+Name: "too small",
+Phone: "1234567890",
+StartMonth: "2015-05",
+Width: "5",
+Price: "105.50",
+Address: "123 ekdkd road"
+},
+{
+CapitalOneID: "qwertyuiop",
+Email: "me@gmail.com",
+EndMonth: "2015-03",
+Height: "15",
+Latitude: 35.9118905,
+Length: "100",
+Longitude: -79.05768269999999,
+Name: "wrong time",
+Phone: "1234567890",
+StartMonth: "2015-04",
+Width: "5",
+Price: "100.50",
+Address: "123 abc street"
+},
+{
+CapitalOneID: "qwertyuiop",
+Email: "me@gmail.com",
+EndMonth: "2015-03",
+Height: "15",
+Latitude: 35.9118905,
+Length: "100",
+Longitude: -69.05768269999999,
+Name: "out of range",
+Phone: "1234567890",
+StartMonth: "2015-10",
+Width: "5",
+Price: "12.20",
+Address: "123 abasdf road"
+},
+{
+CapitalOneID: "qwertyuiop",
+Email: "me@gmail.com",
+EndMonth: "2016-04",
+Height: "15",
+Latitude: 35.9118905,
+Length: "100",
+Longitude: -79.05768269999999,
+Name: "also perfect",
+Phone: "1234567890",
+StartMonth: "2014-10",
+Width: "5",
+Price: "10.52",
+Address: "323 abc road"
+}];
+
+displayResults(data);
+//***************************************************
 		// var url = "listings/Latitude=" + lat + "&Longitude=" + lon + "&SpaceNeeded=" + spaceNeeded + "&StartMonth=" + startMonth + "&EndMonth=" + endMonth;
 		// console.log(url);
 		// $.get(url,
@@ -131,6 +215,7 @@ function displayResults(listings){
 	for(var i=0; i<listings.length; i=i+1){
 		listing = listings[i];
 		template = "<div id="results-display"><div class="row"><div class="col-md-3"><p><b>Price:</b></p></div><div class='col-md-3'><p>$" + listing.Price + "</p></div><div class="col-md-3"><p><b>Space Available:</b></p></div><div class="col-md-3"><p>" + listing.Width + "ft &times; " + listing.Length + "ft &times; " + listing.Height + "ft high</p></div></div><div class="row"><div class="col-md-3"><p><b>Location:</b></p></div><div class='col-md-6'><p>" + listing.Address + "</p></div><div class="col-md-3"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#BuyModal"><b>Proceed</b></button></div></div><br> ";
+		$('#results-display').append(template);
 	}
 }
 
