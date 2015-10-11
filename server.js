@@ -19,6 +19,8 @@ app.get('/', function (req, res) {
     res.render('home');
 });
 
+app.use(express.static(__dirname + '/public'));
+
 // GET /listings
 app.get('/listings', function(req, res) {
 	var query = req.query;
