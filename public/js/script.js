@@ -108,8 +108,16 @@ $(document).ready(function(){
 
 	// Search request
 	$('#search-button').click(function(){
-		var payerAddress = $(".Address").val();
 		var spaceNeeded = $("#SpaceNeeded").val();
+		var startMonth = $("#SearchStartMonth").val();
+		var endMonth = $("#SearchEndMonth").val();
+
+		var url = "listings/Latitude=" + lat + "&Longitude=" + lon + "&SpaceNeeded=" + spaceNeeded + "&StartMonth=" + startMonth + "&EndMonth=" + endMonth;
+		console.log(url);
+		// $.get(url,
+		// function(data, status){
+
+		// });
 	});
 
 
