@@ -2,7 +2,7 @@
       <div class="jumbotron emptyBck">
         <div class="row">
           <div class="col-md-12">
-            <h1 id="logo">
+            <h1>
               <center>Tetrispace</center>
             </h1>
           </div>
@@ -42,7 +42,7 @@
           <div class='col-md-3'>
             <input type="month" class="form-control" id="SearchStartMonth">
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 text-center">
             <p><b>End Month:</b></p>
           </div>
           <div class="col-md-3">
@@ -52,29 +52,35 @@
         <br>
         <br>
         <div class="row" >
-            <div class="col-md-6 text-left">
+            <div class="col-md-6">
             <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#MakeListModal">
             <b>Make a Listing</b>
             </button>
           </div>
           <div class="col-md-6 text-right">
             <button type="button" class="btn btn-info btn-lg" id="search-button" onclick="document.getElementById('results').style.display='block'; return false;">
-            <span class="glyphicon glyphicon-search"></span> Search
+                <span class="glyphicon glyphicon-search"></span> <a href="#results">Search</a>
             </button>
           </div>
           
-          
         </div>
+<!--
       </div>
     </div>
+-->
     
       
       
     <!--------------- END OF SEARCH INPUTS, BEGIN SEARCH RESULTS------------------->
-    <div style="display: none;" id="results">
+    <div style="display: none;" id="results" name="results">
+<!--
       <div class="container">
         <div class="jumbotron">
+-->
             <hr>
+            <br>
+            <br>
+            <br>
           <div class="row">
             <div class="col-md-12">
               <h2><b>Search Results:</b></h2>
@@ -166,7 +172,7 @@
             <p><label for="CapitalOne">Capital One Identification Number:</label><input type="password" class="form-control" id="CapitalOne"></p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" id="submit-listing">Submit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="submit-listing">Submit</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
