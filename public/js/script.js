@@ -119,11 +119,25 @@ $(document).ready(function(){
 		// $.get(url,
 		// function(data, status){
 		//		var matches = filter(data, spaceNeeded, startMonth, endMonth, lat, lon);
+		//		displayResults(matches);
 		// });
 	});
 
-
 })
+
+// Display Search Results
+function displayResults(listings){
+	$("#results-display").empty();
+	for(var i=0; i<listings.length; i=i+1){
+		listing = listings[i];
+		template = "<div id="results-display"><div class="row"><div class="col-md-3"><p><b>Price:</b></p></div><div class='col-md-3'><p>$" + listing.Price + "</p></div><div class="col-md-3"><p><b>Space Available:</b></p></div><div class="col-md-3"><p>" + listing.Width + "ft &times; " + listing.Length + "ft &times; " + listing.Height + "ft high</p></div></div><div class="row"><div class="col-md-3"><p><b>Location:</b></p></div><div class='col-md-6'><p>" + listing.Address + "</p></div><div class="col-md-3"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#BuyModal"><b>Proceed</b></button></div></div><br> ";
+	}
+}
+
+
+
+
+
 
 //***************************************************************
 // Filter all listing to match search request
