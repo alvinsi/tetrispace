@@ -18,11 +18,13 @@
             padding-right: 50px;
             padding-left: 50px;
         }
+        div.pac-container {
+   			z-index: 1050 !important;
+		}
     </style>
 
 </head>
 <body>
-
 <div class="container">
   <div class="jumbotron" id="search list">
       <div class="row">
@@ -37,8 +39,8 @@
       </div>
       <br>
       <div class="row">
-          <div class="col-md-3"><p><b>Street Address:</b></p></div>
-          <div class="col-md-9"><input type="text" class="form-control" id="Address"></div>
+          <div class="col-md-3"><p>Street Address:</p></div>
+          <div class="col-md-9"><input type="text" class="form-control Address" id="autocomplete" onFocus="geolocate()"></div>
       </div>
       <br>
       <div class="row">
@@ -90,9 +92,8 @@
   <label for="ex3">Height</label>
   <input class="form-control" id="ex3" type="text">
 </div>
+        <p><label for="Address">Address of Storage:</label></p><input type="text" class="form-control Seller-Address" onFocus="geolocate()" id="autocomplete2">
 
-        <p><label for="Address">Address of Storage:</label></p><input type="text" class="form-control" onFocus="geolocate()" class="Seller-Address" id="autocomplete">
-          <br>
           <p><b>Months Available:</b></p>
 
             <div class="col-xs-6">
@@ -120,10 +121,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="js/script.js"></script>
-  <!-- Google Maps Autocomplete -->
-<!-- 	// <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-GJTAXers--4zkLGDHoaC7vso9P9xwI&libraries=places"></script> -->
-<!--	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-	<script type="text/javascript" src="js/script.js"></script> -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-GJTAXers--4zkLGDHoaC7vso9P9xwI&signed_in=true&libraries=places&callback=initAutocomplete"
         async defer></script>
 </body>

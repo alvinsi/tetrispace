@@ -1,12 +1,7 @@
-var placeSearch, autocomplete;
-var componentForm = {
-  street_number: 'short_name',
-  route: 'long_name',
-  locality: 'long_name',
-  administrative_area_level_1: 'short_name',
-  country: 'long_name',
-  postal_code: 'short_name'
-};
+
+var placeSearch, autocomplete, autocomplete2;
+var lat;
+var lon;
 
 function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
@@ -14,32 +9,35 @@ function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
       /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
       {types: ['geocode']});
-
+  autocomplete2 = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete2')),
+      {types: ['geocode']});
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
   autocomplete.addListener('place_changed', fillInAddress);
+  autocomplete2.addListener('place_changed', fillInAddress2);
 }
 
+
+
+// [START region_fillform]
 function fillInAddress() {
   // Get the place details from the autocomplete object.
-  var place = autocomplete.getPlace();
-
-  for (var component in componentForm) {
-    document.getElementById(component).value = '';
-    document.getElementById(component).disabled = false;
-  }
-
-  // Get each component of the address from the place details
-  // and fill the corresponding field on the form.
-  for (var i = 0; i < place.address_components.length; i++) {
-    var addressType = place.address_components[i].types[0];
-    if (componentForm[addressType]) {
-      var val = place.address_components[i][componentForm[addressType]];
-      document.getElementById(addressType).value = val;
-    }
-  }
+  var coords = autocomplete.getPlace().geometry.location;
+  console.log(coords);
+  lat = coords.J;
+  lon = coords.M;
 }
+function fillInAddress2() {
+  // Get the place details from the autocomplete object.
+  var coords = autocomplete2.getPlace().geometry.location;
+  console.log(coords);
+  lat = coords.J;
+  lon = coords.M;
+}
+// [END region_fillform]
 
+// [START region_geolocation]
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
@@ -57,6 +55,7 @@ function geolocate() {
     });
   }
 }
+// [END region_geolocation]
 
 
 
@@ -69,7 +68,6 @@ $(document).ready(function(){
 		var width = $("#ex1").val();
 		var length = $("#ex2").val();
 		var height = $("#ex3").val();
-		var address = $(".Seller-Address").val();
 		var startMonth = $("#StartMonth").val();
 		var endMonth = $("#EndMonth").val();
 		var phone = $("#Phone").val();
@@ -80,12 +78,14 @@ $(document).ready(function(){
 			Width: width,
 			Length: length,
 			Height: height,
-			Address: address,
+			Latitude: lat,
+			Longitude: lon,
 			StartMonth: startMonth,
 			EndMonth: endMonth,
 			Phone: phone,
 			CapitalOneID: capitalOneID
 		};
+		console.log(listing);
 		// $.post("url",
 		// 	listing,
 		// function(data, status){
@@ -95,8 +95,9 @@ $(document).ready(function(){
 
 	// Search request
 	$('#search-button').click(function(){
-		var payerAddress = $("#Address").val();
+		var payerAddress = $(".Address").val();
 		var spaceNeeded = $("#SpaceNeeded").val();
-	})
+	});
+
 
 })
