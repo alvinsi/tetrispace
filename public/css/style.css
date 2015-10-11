@@ -1,7 +1,7 @@
 
         body {
-            background-color: #cccccc;
-            background:url("../../images/background.jpg") top right no-repeat;
+            background-color: #cccccc;/*
+            background:url("../../images/background.jpg") top right no-repeat;*/
             background-attachment:fixed;
             font-family: "Raleway";
             color: white;

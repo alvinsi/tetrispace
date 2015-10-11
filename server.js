@@ -1,5 +1,5 @@
 var express = require('express');
-var exphbs  = require('express-handlebars');
+var exphbs  = require('express3-handlebars');
 var bodyParser = require('body-parser');
 var _ = require('underscore');
 var db = require('./db.js');
