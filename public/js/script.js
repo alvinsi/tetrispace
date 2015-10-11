@@ -86,6 +86,19 @@ $(document).ready(function(){
 			CapitalOneID: capitalOneID
 		};
 		console.log(listing);
+		// Example listing
+// CapitalOneID: "abcdefghijk"
+// Email: "me@gmail.com"
+// EndMonth: "2015-11"
+// Height: "15"
+// Latitude: 35.9118905
+// Length: "10"
+// Longitude: -79.05768269999999
+// Name: "William Yang"
+// Phone: "1234567890"
+// StartMonth: "2015-10"
+// Width: "5"
+
 		// $.post("url",
 		// 	listing,
 		// function(data, status){
