@@ -2,6 +2,7 @@
 var placeSearch, autocomplete, autocomplete2;
 var lat;
 var lon;
+var matches;
 
 function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
@@ -120,19 +121,26 @@ $(document).ready(function(){
         alert("Search Parameter(s) Are Missing, Please Try Again!");
       },
 		  success: function(data) {
+        matches = data;
         displayResults(data);
       },
 	   	type: 'GET'
    	});
+    
 	});
 
-	var matches;
-
+	
+//*********************Test*******************
 // Submit POST request for Capital One money transfer
 	$("#submit-purchase").click(function(){
-        alert("Payment has been processed");
-		var buyerCapitalOneID = $("#Buyer-CapitalOne").val();
-		var sellerCapitalOneID = matches[listingID].CapitalOneID;
+    alert("Payment has been processed");
+		
+    var buyerCapitalOneID = $("#Buyer-CapitalOne").val();
+    console.log(buyerCapitalOneID);
+
+		var sellerCapitalOneID = matches[listingID].CapitalOneId;
+    console.log(sellerCapitalOneID);
+
 
     var url= 'http://api.reimaginebanking.com/accounts/' + buyerCapitalOneID + '/transfers?key=ef0c1299de8c6e82cb65534aabeca2d4';
     var body = {
@@ -143,19 +151,47 @@ $(document).ready(function(){
         "status": "pending",
         "description": "Paying for shared rental storage space"
     };
-    $.post(url, body, function(data, status){
-    	// Maybe do something?
-    	alert("Payment processed");
+    // $.post(url, body, function(data, status){
+    // 	// Maybe do something?
+    // 	alert("Payment processed");
+    //   console.log(status);
+    // });
+    $.ajax({
+      url: url,
+      type: 'post',
+      dataType: 'json',
+      success: function (data) {
+        console.log(data);
+      },
+      error: function(e) {
+        // alert("Oops! Something Went Wrong, Please Try Again!")
+      },
+      data: JSON.stringify(body),
+      contentType: "application/json"
     });
-	   });
+	});
     
-    var listingID;
-    $(".proceed-to-buy").click(function(e){
-        console.log(e);
-        listingID = parseInt(e.toElement.id.substring(8));
-        console.log(listingID);
-    });
+  $("#title").mouseover(function(){
+    console.log("test title mouseover");
+  });
+
 })
+
+var listingID;
+function setUpBuy(){
+  $(".proceed-to-buy").mouseover(function(e){
+    event.preventDefault();
+    // console.log("test click");
+    // console.log(e);
+    temp = parseInt(e.toElement.id.substring(8));
+    if(!isNaN(temp)){
+      listingID = temp;
+    }
+    // listingID = parseInt(e.toElement.id.substring(8));
+    console.log(listingID);
+  });
+}
+//**************************Test*****************
 
 // Display Search Results
 function displayResults(listings){
@@ -166,6 +202,7 @@ function displayResults(listings){
 			template = '<div class="row"><div class="col-md-3"><p><b>Price:</b></p></div><div class="col-md-3"><p>$' + listing.Price + '</p></div><div class="col-md-3"><p><b>Space Available:</b></p></div><div class="col-md-3"><p>' + listing.Width + 'ft &times; ' + listing.Length + 'ft &times; ' + listing.Height + 'ft high</p></div></div><div class="row"><div class="col-md-3"><p><b>Location:</b></p></div><div class="col-md-6"><p>' + listing.Address + '</p></div><div class="col-md-3"><button type="button" class="btn btn-success proceed-to-buy" id="listing-' + i + '" data-toggle="modal" data-target="#BuyModal"><b>Proceed</b></button></div></div><hr>';
 			$('#results-display').append(template);
 		}
+    setUpBuy();
 	} else {
 		$('#results-display').append('<div class ="row"><h1>No Results Were Found</h1></div>');
 	}
