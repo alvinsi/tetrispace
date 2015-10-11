@@ -65,49 +65,36 @@ $(document).ready(function(){
 	$("#submit-listing").click(function(){
 		var name = $("#Name").val();
 		var email = $("#Email").val();
-		var width = $("#ex1").val();
-		var length = $("#ex2").val();
-		var height = $("#ex3").val();
+		var width = $("#Width").val();
+		var length = $("#Length").val();
+		var height = $("#Height").val();
 		var startMonth = $("#StartMonth").val();
 		var endMonth = $("#EndMonth").val();
 		var phone = $("#Phone").val();
 		var capitalOneID = $("#CapitalOne").val();
 		var price = $("#Asking-Price").val();
 		var address = $("#autocomplete2").val();
+
 		var listing = {
-			Name: name,
-			Email: email,
-			Width: parseInt(width),
-			Length: parseInt(length),
-			Height: height,
-			Latitude: parseFloat(lat),
-			Longitude: parseFloat(lon),
-			StartMonth: startMonth,
-			EndMonth: endMonth,
-			Phone: phone,
-			CapitalOneID: capitalOneID,
-			Price: parseFloat(price),
-			Address: address
-		};
-		console.log(listing);
-		// Example listing
-// CapitalOneID: "abcdefghijk"
-// Email: "me@gmail.com"
-// EndMonth: "2015-11"
-// Height: "15"
-// Latitude: 35.9118905
-// Length: "10"
-// Longitude: -79.05768269999999
-// Name: "William Yang"
-// Phone: "1234567890"
-// StartMonth: "2015-10"
-// Width: "5"
+	    "CapitalOneId": "testdsdsad",
+	    "Name": "also perfect",
+	    "Email": "me@gmail.com",
+	    "Address": "323 abc road",
+	    "Price": 10.52,
+	    "Height": 15,
+	    "Width": 5,
+	    "Length": 100,
+	    "Phone": 1234567890,
+	    "Latitude": 35.9118905,
+	    "Longitude": -79.05768269999999,
+	    "StartMonth": "2014-10",
+	    "EndMonth": "2016-04"
+	  };
 
-		// $.post("url",
-		// 	listing,
-		// function(data, status){
-
-		// });
+		$.post("./listings",
+			listing,
+		function(data, status){
+		});
 	});
 
 	// Search request
@@ -120,6 +107,8 @@ $(document).ready(function(){
 		console.log(lon);
         console.log("is anything working");
 //TEST***************************************************
+
+
 data = [{
 CapitalOneID: "abcdefghijk",
 Email: "me@gmail.com",
@@ -166,35 +155,37 @@ Price: "100.50",
 Address: "123 abc street"
 },
 {
-CapitalOneID: "qwertyuiop",
-Email: "me@gmail.com",
-EndMonth: "2015-03",
-Height: "15",
-Latitude: 35.9118905,
-Length: "100",
-Longitude: -69.05768269999999,
-Name: "out of range",
-Phone: "1234567890",
-StartMonth: "2015-10",
-Width: "5",
-Price: "12.20",
-Address: "123 abasdf road"
+	CapitalOneID: "qwertyuiop",
+	Email: "me@gmail.com",
+	EndMonth: "2015-03",
+	Height: "15",
+	Latitude: 35.9118905,
+	Length: "100",
+	Longitude: -69.05768269999999,
+	Name: "out of range",
+	Phone: "1234567890",
+	StartMonth: "2015-10",
+	Width: "5",
+	Price: "12.20",
+	Address: "123 abasdf road"
 },
 {
-CapitalOneID: "qwertyuiop",
-Email: "me@gmail.com",
-EndMonth: "2016-04",
-Height: "15",
-Latitude: 35.9118905,
-Length: "100",
-Longitude: -79.05768269999999,
-Name: "also perfect",
-Phone: "1234567890",
-StartMonth: "2014-10",
-Width: "5",
-Price: "10.52",
-Address: "323 abc road"
+	CapitalOneID: "qwertyuiop",
+	Email: "me@gmail.com",
+	EndMonth: "2016-04",
+	Height: "15",
+	Latitude: 35.9118905,
+	Length: "100",
+	Longitude: -79.05768269999999,
+	Name: "also perfect",
+	Phone: "1234567890",
+	StartMonth: "2014-10",
+	Width: "5",
+	Price: "10.52",
+	Address: "323 abc road"
 }];
+
+// Latitude: 35.9118905, Longitude: -79.05768269999999, space 100 date: may-aug 2015
 
 displayResults(data);
 //***************************************************
@@ -246,77 +237,3 @@ function displayResults(listings){
 		$('#results-display').append(template);
 	}
 }
-
-
-
-
-
-
-//***************************************************************
-// Filter all listing to match search request
-function filter (data, spaceNeeded, startMonth, endMonth, lat, lon) {
-	var matches = [];
-	for (var i=0; i<data.length; i=i+1){
-		var listing = data[i];
-		if(range(lat, lon, listing.Latitude, listing.Longitude) < 30000){
-			if(bigEnough(listing.Length, listing.Width, spaceNeeded)){
-				if(timeMatch(startMonth, endMonth, listing.StartMonth, listing.EndMonth)){
-					listing.Distance(range(lat, lon, listing.Latitude, listing.Longitude));
-					matches.push(listing);
-					console.log(listing.Name);
-				}
-				else{console.log(listing + "fail on time");}
-			}
-			else{console.log(listing + "fail on size");}
-		} 
-		else{console.log(listing + "fail on location");}
-	}
-	return matches;
-}
-// in range, time matches, big enough
-function range (lat1, lon1, lat2, lon2){
-	// Formula for distance between two sets of coordinates
-	var R = 6371000; // metres
-	var p1 = lat1 * Math.PI / 180;
-	var p2 = lat2 * Math.PI / 180;
-	var dp = (lat2-lat1) * Math.PI / 180;
-	var dl = (lon2-lon1) * Math.PI / 180;
-
-	var a = Math.sin(dp/2) * Math.sin(dp/2) +
-        Math.cos(p1) * Math.cos(p2) *
-        Math.sin(dl/2) * Math.sin(dl/2);
-	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-
-	var d = R * c; // distance in meters
-	return d;
-}
-
-function bigEnough (listingLength, listingWidth, desiredSize){
-	return (desiredSize < (listingLength*listingWidth));
-}
-
-function timeMatch (searchStart, searchEnd, listingStart, listingEnd){
-	var searchStartYear = parseInt(searchStart.substring(0,4));
-	var searchStartMonth = parseInt(searchStart.substring(5, 7));
-	var searchEndYear = parseInt(searchEnd.substring(0,4));
-	var searchEndMonth = parseInt(searchEnd.substring(5, 7));	
-	var listingStartYear = parseInt(listingStart.substring(0,4));
-	var listingStartMonth = parseInt(listingStart.substring(5, 7));
-	var listingEndYear = parseInt(listingEnd.substring(0,4));
-	var listingEndMonth = parseInt(listingEnd.substring(5, 7));
-
-	if(searchStartYear < listingStartYear){
-		return false;
-	}
-	else if(searchStartYear == listingStartYear && searchStartMonth < listingStartMonth){
-		return false;
-	}
-	else if(searchEndYear > listingEndYear){
-		return false;
-	}
-	else if(searchEndYear == listingEndYear && searchEndMonth > listingEndMonth){
-		return false;
-	}
-	return true;
-}
-
