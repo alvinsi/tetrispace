@@ -7,10 +7,10 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <style>
         body {
-            background-image: url("../images/background.jpg");
-            background-repeat:no-repeat;
-            background-position:center;
-            background-color: #cccccc;}
+            background-color: #cccccc;
+            background:url("../images/background.jpg") top right no-repeat;
+            background-attachment:fixed;
+        }
         .jumbotron{
             background: rgba(184, 138, 130, 0.5); 
             position: relative;
@@ -31,7 +31,11 @@
           <div class="col-md-12"><h1><center>Tetrispace</center></h1></div>
       </div>
       <div class="row">
-          <div class="col-md-3"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><b>Make a Listing</b></button></div>
+          <div class="col-md-3">
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                  <b>Make a Listing</b>
+              </button>
+          </div>
       </div>
       <br>
       <div class="row">
@@ -44,16 +48,28 @@
       </div>
       <br>
       <div class="row">
-          <div class="col-md-3"><p><b>Space Needed (ft<sup>2</sup>):</b></p></div>
-          <div class="col-md-9"><input type="number" class="form-control" id="SpaceNeeded"></div>
+          <div class="col-md-3">
+              <p><b>Space Needed (ft<sup>2</sup>):</b></p>
+          </div>
+          <div class="col-md-9">
+              <input type="number" class="form-control" id="SpaceNeeded">
+          </div>
       </div>
       <br>
       
       <div class="row">
-        <div class="col-md-3"><p><b>Start Month:</b></p></div>
-        <div class='col-md-3'><input type="month" class="form-control" id="SearchStartMonth"></div>
-          <div class="col-md-3"><p><b>End Month:</b></p></div>
-          <div class="col-md-3"><input type="month" class="form-control" id="SearchEndMonth"></div>
+        <div class="col-md-3">
+            <p><b>Start Month:</b></p>
+        </div>
+        <div class='col-md-3'>
+            <input type="month" class="form-control" id="SearchStartMonth">
+        </div>
+        <div class="col-md-3">
+            <p><b>End Month:</b></p>
+        </div>
+        <div class="col-md-3">
+            <input type="month" class="form-control" id="SearchEndMonth">
+        </div>
       </div>
       <br>
       <div class="row">     
