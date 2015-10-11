@@ -29,8 +29,6 @@ app.get('/listings', function(req, res) {
 	var lat, lon, endMonth, startMonth;
 	var matches = [];
 
-	// /listings/?Latitude=35.9118905&Longitude=-79.05768269999999&StartMonth=2015-05&EndMonth=2015-08&SpaceNeeded=100 Gives 2 right values
-
 	if (query.hasOwnProperty('Latitude') && query.Latitude.length > 0 
 				&& query.hasOwnProperty('StartMonth') && query.StartMonth.length > 0
 				&& query.hasOwnProperty('Longitude') && query.Longitude.length > 0
@@ -45,11 +43,7 @@ app.get('/listings', function(req, res) {
 			res.json(matches);
 		})
 	} else {
-		db.listing.findAll().then(function(listings){
-			res.json(listings);
-		}, function(e) {
-			res.status(500).send();
-		});
+		res.status(500).send();
 	}
 });
 

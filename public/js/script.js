@@ -108,51 +108,23 @@ $(document).ready(function(){
 		var endMonth = $("#SearchEndMonth").val();
 
 		var url = "./listings/?Latitude=" + lat + "&Longitude=" + lon + "&SpaceNeeded=" + spaceNeeded + "&StartMonth=" + startMonth + "&EndMonth=" + endMonth;
-		console.log(url);
-//TEST***************************************************
+		// var url = "./listings/?Latitude=35.9118905&Longitude=-79.05768269999999&StartMonth=2015-05&EndMonth=2015-08&SpaceNeeded=100";
 
-// Latitude: 35.9118905, Longitude: -79.05768269999999, space 100 date: may-aug 2015
-
-		// displayResults(data);
-
-		// $.ajax({
-  //     url: './listings/',
-  //     type: 'post',
-  //     dataType: 'json',
-  //     success: function (data) {
-  //     	alert("Listing Successfully Updated")
-  //     },
-  //     error: function(e) {
-		//     alert("Oops! Something Went Wrong, Please Try Again!")
-		//   },
-  //     data: JSON.stringify({
-	 //    "CapitalOneId": "hallooooo",
-	 //    "Name": "also perfect",
-	 //    "Email": "me@gmail.com",
-	 //    "Address": "323 abc road",
-	 //    "Price": "10.52",
-	 //    "Height": "15",
-	 //    "Width": "5",
-	 //    "Length": "100",
-	 //    "Phone": "1234567890",
-	 //    "Latitude": "35.9118905",
-	 //    "Longitude": "-79.05768269999999",
-	 //    "StartMonth": "2014-10",
-	 //    "EndMonth": "2016-04"
-	 //  	}),
-	 //  	contentType: "application/json"
-  //   });
-
-		// var url = "listings/Latitude=" + lat + "&Longitude=" + lon + "&SpaceNeeded=" + spaceNeeded + "&StartMonth=" + startMonth + "&EndMonth=" + endMonth;
-		// console.log(url);
-		// $.get(url,
-		// function(data, status){
-		//		matches = filter(data, spaceNeeded, startMonth, endMonth, lat, lon);
-		//		displayResults(matches);
-		// });
+		$.ajax({
+			url: url,
+		  data: {
+	      format: 'json'
+	    },
+		  dataType: 'json',
+		  error: function() {
+        alert("Search Parameter(s) Are Missing, Please Try Again!");
+      },
+		  success: function(data) {
+        displayResults(data);
+      },
+	   	type: 'GET'
+   	});
 	});
-
-//***************************************************
 
 	var matches;
 
@@ -188,9 +160,13 @@ $(document).ready(function(){
 // Display Search Results
 function displayResults(listings){
 	$("#results-display").empty();
-	for(var i=0; i<listings.length; i=i+1){
-		listing = listings[i];
-		template = '<div class="row"><div class="col-md-3"><p><b>Price:</b></p></div><div class="col-md-3"><p>$' + listing.Price + '</p></div><div class="col-md-3"><p><b>Space Available:</b></p></div><div class="col-md-3"><p>' + listing.Width + 'ft &times; ' + listing.Length + 'ft &times; ' + listing.Height + 'ft high</p></div></div><div class="row"><div class="col-md-3"><p><b>Location:</b></p></div><div class="col-md-6"><p>' + listing.Address + '</p></div><div class="col-md-3"><button type="button" class="btn btn-success proceed-to-buy" id="listing-' + i + '" data-toggle="modal" data-target="#BuyModal"><b>Proceed</b></button></div></div><hr>';
-		$('#results-display').append(template);
+	if (listings.length > 0) {
+		for(var i=0; i<listings.length; i=i+1){
+			listing = listings[i];
+			template = '<div class="row"><div class="col-md-3"><p><b>Price:</b></p></div><div class="col-md-3"><p>$' + listing.Price + '</p></div><div class="col-md-3"><p><b>Space Available:</b></p></div><div class="col-md-3"><p>' + listing.Width + 'ft &times; ' + listing.Length + 'ft &times; ' + listing.Height + 'ft high</p></div></div><div class="row"><div class="col-md-3"><p><b>Location:</b></p></div><div class="col-md-6"><p>' + listing.Address + '</p></div><div class="col-md-3"><button type="button" class="btn btn-success proceed-to-buy" id="listing-' + i + '" data-toggle="modal" data-target="#BuyModal"><b>Proceed</b></button></div></div><hr>';
+			$('#results-display').append(template);
+		}
+	} else {
+		$('#results-display').append('<div class ="row"><h1>No Results Were Found</h1></div>');
 	}
 }
