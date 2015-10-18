@@ -1,174 +1,193 @@
+<!-- Main Screen -->
 <div class="container">
-      <div class="jumbotron emptyBck">
-        <div class="row">
-          <div class="col-md-12">
-            <h1 id="title">
-              <center>Tetrispace</center>
-            </h1>
-            <br>
-            <h3>
-              <center>Play Tetris With Unused Storage Spaces</center>
-            </h3>
-          </div>
-        </div>
+  <div class="jumbotron emptyBck">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 id="title">
+          <center>Tetrispace</center>
+        </h1>
         <br>
-        <br>
-        <br>
-        <!--
-          <br>
-          <div class="row">
-              <div class="col-md-11"><h2><b>Search for Listing:</b></h2></div>
-          </div>
-          -->
-        <br>
-        <div class="row">
-          <div class="col-md-3">
-            <p><h4><b>Street Address:</b></h4></p>
-          </div>
-          <div class="col-md-9"><input type="text" class="form-control Address" id="autocomplete" onFocus="geolocate()"></div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-md-3">
-            <p><h4><b>Space Needed (ft<sup>2</sup>):</b></h4></p>
-          </div>
-          <div class="col-md-9">
-            <input type="number" class="form-control" id="SpaceNeeded">
-          </div>
-        </div>
-        <br>
-        <div class="row">
-              <div class="col-xs-6">
-                <label for="SearchStartMonth"><h4>Start Month</h4></label>
-                <input class="form-control" id="SearchStartMonth" type="month">
-              </div>
-              <div class="col-xs-6">
-                <label for="SearchEndMonth"><h4>End Month</h4></label>
-                <input class="form-control" id="SearchEndMonth" type="month">
-              </div>
-            </div>
-        <br>
-        <br>
-        <div class="row" >
-          <div class="col-md-12 text-right">
-            <button type="button" class="btn btn-info btn-lg" id="search-button" onclick="document.getElementById('results').style.display='block'; return false;">
-                <!--<span class="glyphicon glyphicon-search"></span>--> 
-                <a href="#results">Search</a>
-            </button>
-          </div>
-        </div>
+        <h3>
+          <center>Play Tetris With Unused Storage Spaces</center>
+        </h3>
+      </div>
+    </div>
+
+    <br><br><br><br>
+
+    <div class="row">
+      <div class="col-md-3">
+        <p>
+          <h4>
+            <b>Street Address:</b>
+          </h4>
+        </p>
+      </div>
+      <div class="col-md-9">
+        <input type="text" class="form-control Address" id="autocompleteQuery">
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-3">
+        <p>
+          <h4>
+            <b>Space Needed (ft<sup>2</sup>):</b>
+          </h4>
+        </p>
+      </div>
+      <div class="col-md-9">
+        <input type="number" class="form-control" id="SpaceNeeded">
+      </div>
+    </div>
+
+    <br>
         
-        <div>
-          <div class="col-md-12 text-right">
-            <a href="#" data-toggle="modal" data-target="#MakeListModal"><h3><b>Make a Listing</b></h3></a>
-          </div>
-        </div>
-<!--
+    <div class="row">
+      <div class="col-xs-6">
+        <label for="SearchStartMonth"><h4>Start Month</h4></label>
+        <input class="form-control" id="SearchStartMonth" type="month">
+      </div>
+      <div class="col-xs-6">
+        <label for="SearchEndMonth"><h4>End Month</h4></label>
+        <input class="form-control" id="SearchEndMonth" type="month">
       </div>
     </div>
--->
+
+    <br><br>
     
-      
-      
-    <!--------------- END OF SEARCH INPUTS, BEGIN SEARCH RESULTS------------------->
-    <div style="display: none;" id="results" name="results">
-<!--
-      <div class="container">
-        <div class="jumbotron">
--->
-            <hr>
-            <br>
-            <br>
-            <br>
+    <div class="row" >
+      <div class="col-md-12 text-right">
+        <button type="button" class="btn btn-info btn-lg" id="search-button" onclick="document.getElementById('results').style.display='block'; return false;">
+          <a href="#results">Search</a>
+        </button>
+      </div>
+    </div>
+        
+    <div>
+      <div class="col-md-12 text-right">
+        <a href="#" data-toggle="modal" data-target="#MakeListModal"><h3><b>Make a Listing</b></h3></a>
+      </div>
+    </div>
+
+    <hr><br><br><br>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2><b>Search Results:</b></h2>
+      </div>
+    </div>
+          
+    <br>
+
+    <div id="results-display"></div>
+  </div>
+</div>
+
+<!-- Modal for Posting New Listing -->
+<div id="MakeListModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">
+          <center>Make a Listing</center>
+        </h2>
+      </div>
+
+      <div class="modal-body">
+        <p>
+          <label for="Name">Name:</label>
+          <input type="text" class="form-control" id="Name">
+        </p>
+        <p>
+          <label for="Email">Email:</label>
+          <input type="text" class="form-control" id="Email">
+        </p>
+        <p>
+          <b>Available Space:</b>
+        </p>
+        <p>
           <div class="row">
-            <div class="col-md-12">
-              <h2><b>Search Results:</b></h2>
+            <div class="col-xs-4">
+              <label for="Width">Width</label>
+              <input class="form-control" id="Width" type="text">
+            </div>
+            <div class="col-xs-4">
+              <label for="Length">Length</label>
+              <input class="form-control" id="Length" type="text">
+            </div>
+            <div class="col-xs-4">
+              <label for="Height">Height</label>
+              <input class="form-control" id="Height" type="text">
             </div>
           </div>
-          <br>
-          <div id="results-display">
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Make Listing Modal -->
-    <div id="MakeListModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h2 class="modal-title">
-              <center>Make a Listing</center>
-            </h2>
-          </div>
-          <div class="modal-body">
-            <p><label for="Name">Name:</label><input type="text" class="form-control" id="Name"></p>
-            <p><label for="Email">Email:</label><input type="text" class="form-control" id="Email"></p>
-            <p><b>Available Space:</b></p>
-            <p>
-            <div class="row">
-              <div class="col-xs-4">
-                <label for="Width">Width</label>
-                <input class="form-control" id="Width" type="text">
-              </div>
-              <div class="col-xs-4">
-                <label for="Length">Length</label>
-                <input class="form-control" id="Length" type="text">
-              </div>
-              <div class="col-xs-4">
-                <label for="Height">Height</label>
-                <input class="form-control" id="Height" type="text">
-              </div>
+        </p>
+        <p>
+          <label for="Address">
+            Address of Storage:
+          </label>
+          <input type="text" class="form-control Seller-Address" id="autocompletePost">
+        </p>
+        <p>
+          <b>Months Available:</b>
+        </p>
+        <p>
+          <div class="row">
+            <div class="col-xs-6">
+              <label for="Width">Start Month</label>
+              <input class="form-control" id="StartMonth" type="month">
             </div>
-            </p>
-            <p><label for="Address">Address of Storage:</label><input type="text" class="form-control Seller-Address" onFocus="geolocate()" id="autocomplete2"></p>
-            <p><b>Months Available:</b></p>
-            </p>
-            <div class="row">
-              <div class="col-xs-6">
-                <label for="Width">Start Month</label>
-                <input class="form-control" id="StartMonth" type="month">
-              </div>
-              <div class="col-xs-6">
-                <label for="ex2">End Month</label>
-                <input class="form-control" id="EndMonth" type="month">
-              </div>
+            <div class="col-xs-6">
+              <label for="ex2">End Month</label>
+              <input class="form-control" id="EndMonth" type="month">
             </div>
-            </p>
-            <p><label for="Phone">Phone Number:</label><input type="text" class="form-control" id="Phone"></p>
-        <p><label for="Asking-Price">Asking Price:</label><input type="text" class="form-control" id="Asking-Price"></p>
-            <p><label for="CapitalOne">Capital One Identification Number:</label><input type="password" class="form-control" id="CapitalOne"></p>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" id="submit-listing">Submit</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
+        </p>
+        <p>
+          <label for="Phone">Phone Number:</label>
+          <input type="text" class="form-control" id="Phone">
+        </p>
+        <p>
+          <label for="Asking-Price">Asking Price:</label>
+          <input type="text" class="form-control" id="Asking-Price">
+        </p>
+        <p>
+          <label for="CapitalOne">Capital One Identification Number:</label>
+          <input type="password" class="form-control" id="CapitalOne">
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="submit-listing">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-    <!-- Make Purchase Modal -->
-    <div id="BuyModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h2 class="modal-title">
-              <center>Additional Information</center>
-            </h2>
-          </div>
-          <div class="modal-body">
-            <p><label for="Name">Name:</label><input type="text" class="form-control" id="Name"></p>
-            <p><label for="Email">Email:</label><input type="text" class="form-control" id="Email"></p>
-            <p><label for="Phone">Phone Number:</label><input type="Phone" class="form-control" id="Phone"></p>
-            <p><label for="CapitalOne">Capital One Identification Number:</label><input type="password" class="form-control" id="Buyer-CapitalOne"></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" id="submit-purchase">Submit</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
+  </div>
+</div>
+
+<!-- Modal for Buying -->
+<div id="BuyModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">
+          <center>Additional Information</center>
+        </h2>
+      </div>
+      <div class="modal-body">
+        <p><label for="Name">Name:</label><input type="text" class="form-control" id="Name"></p>
+        <p><label for="Email">Email:</label><input type="text" class="form-control" id="Email"></p>
+        <p><label for="Phone">Phone Number:</label><input type="Phone" class="form-control" id="Phone"></p>
+        <p><label for="CapitalOne">Capital One Identification Number:</label><input type="password" class="form-control" id="Buyer-CapitalOne"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="submit-purchase">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
+  </div>
+</div>

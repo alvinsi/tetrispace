@@ -1,65 +1,46 @@
 
-var placeSearch, autocomplete, autocomplete2;
-var lat;
-var lon;
-var matches;
+var placeSearch, autocompleteQuery, autocompletePost, lat, lon, matches, listingID;
 
+/**
+* Initialize Google Autocomplete Service
+*/
 function initAutocomplete() {
-  // Create the autocomplete object, restricting the search to geographical
-  // location types.
-  autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-      {types: ['geocode']});
-  autocomplete2 = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete2')),
-      {types: ['geocode']});
-  // When the user selects an address from the dropdown, populate the address
-  // fields in the form.
-  autocomplete.addListener('place_changed', fillInAddress);
-  autocomplete2.addListener('place_changed', fillInAddress2);
+  autocompleteQuery = new google.maps.places.Autocomplete((document.getElementById('autocompleteQuery')),{
+    types: ['geocode']
+  });
+  autocompletePost = new google.maps.places.Autocomplete((document.getElementById('autocompletePost')),{
+    types: ['geocode']
+  });
+  autocompleteQuery.addListener('place_changed', fillInAddressQuery);
+  autocompletePost.addListener('place_changed', fillInAddressPost);
 }
 
-// [START region_fillform]
-function fillInAddress() {
-  // Get the place details from the autocomplete object.
-  var coords = autocomplete.getPlace().geometry.location;
+/**
+* Fill in Address For Search Tab
+*/
+function fillInAddressQuery() {
+  var coords = autocompleteQuery.getPlace().geometry.location;
   lat = coords.J;
   lon = coords.M;
 }
-function fillInAddress2() {
-  // Get the place details from the autocomplete object.
-  var coords = autocomplete2.getPlace().geometry.location;
-  console.log(coords);
+
+/**
+* Fill in Address For Post Tab
+*/
+function fillInAddressPost() {
+  var coords = autocompletePost.getPlace().geometry.location;
   lat = coords.J;
   lon = coords.M;
 }
-// [END region_fillform]
 
-// [START region_geolocation]
-// Bias the autocomplete object to the user's geographical location,
-// as supplied by the browser's 'navigator.geolocation' object.
-function geolocate() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var geolocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      var circle = new google.maps.Circle({
-        center: geolocation,
-        radius: position.coords.accuracy
-      });
-      autocomplete.setBounds(circle.getBounds());
-    });
-  }
-}
-// [END region_geolocation]
+/**
+* Execute when the page is loaded
+*/
+$(document).ready(function() {
+  $('.background-image').on('webkitAnimationEnd', function(e) {
+    $(this).addClass('visible');
+  });
 
-
-
-$(document).ready(function(){
-
-	// Get Listing info to send to server
 	$("#submit-listing").click(function(){
 		var name = $("#Name").val();
 		var email = $("#Email").val();
@@ -102,14 +83,12 @@ $(document).ready(function(){
     });
 	});
 
-	// Search request
 	$('#search-button').click(function(){
 		var spaceNeeded = parseInt($("#SpaceNeeded").val());
 		var startMonth = $("#SearchStartMonth").val();
 		var endMonth = $("#SearchEndMonth").val();
 
 		var url = "./listings/?Latitude=" + lat + "&Longitude=" + lon + "&SpaceNeeded=" + spaceNeeded + "&StartMonth=" + startMonth + "&EndMonth=" + endMonth;
-		// var url = "./listings/?Latitude=35.9118905&Longitude=-79.05768269999999&StartMonth=2015-05&EndMonth=2015-08&SpaceNeeded=100";
 
 		$.ajax({
 			url: url,
@@ -126,22 +105,11 @@ $(document).ready(function(){
       },
 	   	type: 'GET'
    	});
-    
 	});
 
-	
-//*********************Test*******************
-// Submit POST request for Capital One money transfer
 	$("#submit-purchase").click(function(){
-    alert("Payment has been processed");
-		
     var buyerCapitalOneID = $("#Buyer-CapitalOne").val();
-    console.log(buyerCapitalOneID);
-
 		var sellerCapitalOneID = matches[listingID].CapitalOneId;
-    console.log(sellerCapitalOneID);
-
-
     var url= 'http://api.reimaginebanking.com/accounts/' + buyerCapitalOneID + '/transfers?key=ef0c1299de8c6e82cb65534aabeca2d4';
     var body = {
         "medium": "balance",
@@ -151,49 +119,39 @@ $(document).ready(function(){
         "status": "pending",
         "description": "Paying for shared rental storage space"
     };
-    // $.post(url, body, function(data, status){
-    // 	// Maybe do something?
-    // 	alert("Payment processed");
-    //   console.log(status);
-    // });
+
     $.ajax({
       url: url,
       type: 'post',
       dataType: 'json',
       success: function (data) {
-        console.log(data);
+        alert("Payment has been processed\n" + data.message);
       },
       error: function(e) {
-        // alert("Oops! Something Went Wrong, Please Try Again!")
+        alert("Oops! Something Went Wrong, Please Try Again!")
       },
       data: JSON.stringify(body),
       contentType: "application/json"
     });
 	});
-    
-  $("#title").mouseover(function(){
-    console.log("test title mouseover");
-  });
+});
 
-})
-
-var listingID;
+/**
+* Set Up Purchase Button
+*/
 function setUpBuy(){
   $(".proceed-to-buy").mouseover(function(e){
     event.preventDefault();
-    // console.log("test click");
-    // console.log(e);
     temp = parseInt(e.toElement.id.substring(8));
     if(!isNaN(temp)){
       listingID = temp;
     }
-    // listingID = parseInt(e.toElement.id.substring(8));
-    console.log(listingID);
   });
 }
-//**************************Test*****************
 
-// Display Search Results
+/**
+* Display the Results of Listings
+*/
 function displayResults(listings){
 	$("#results-display").empty();
 	if (listings.length > 0) {

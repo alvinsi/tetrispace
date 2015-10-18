@@ -22,7 +22,9 @@ app.get('/', function (req, res) {
 
 app.use(express.static(__dirname + '/public'));
 
-// GET /listings
+/**
+* GET /listings/
+*/
 app.get('/listings', function(req, res) {
 	var query = req.query;
 	var where = {};
@@ -47,7 +49,9 @@ app.get('/listings', function(req, res) {
 	}
 });
 
-// GET /listings/:id
+/**
+* GET /listings/:id
+*/
 app.get('/listings/:id', function(req, res) {
 	var listingId = parseInt(req.params.id, 10);
 	
@@ -62,7 +66,9 @@ app.get('/listings/:id', function(req, res) {
 	});
 });
 
-// POST /listings
+/**
+* POST /listings
+*/
 app.post('/listings', function(req, res) {
 	var body = _.pick(req.body, 'CapitalOneId', 'Name', 'Email', 'Address', 'Price', 'Height', 'Width', 'Length', 'Phone', 'Latitude', 'Longitude', 'StartMonth', 'EndMonth');
 
@@ -73,7 +79,9 @@ app.post('/listings', function(req, res) {
 	});
 });
 
-// DELETE /listings/:id
+/**
+* DELETE /listings/:id
+*/
 app.delete('/listings/:id', function(req, res) {
 	var listingId = parseInt(req.params.id, 10);
 	
@@ -94,7 +102,9 @@ app.delete('/listings/:id', function(req, res) {
 	});
 });
 
-// PUT /listings/:id
+/**
+* PUT /listings/:id
+*/
 app.put('/listings/:id', function(req, res) {
 	var listingId = parseInt(req.params.id, 10);
 	var body = _.pick(req.body, 'description', 'completed');

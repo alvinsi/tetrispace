@@ -1,4 +1,3 @@
-/* latin */
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
@@ -6,24 +5,21 @@
   src: local('Raleway'), url(http://fonts.gstatic.com/s/raleway/v9/QAUlVt1jXOgQavlW5wEfxQLUuEpTyoUstqEm5AMlJo4.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
-
 body {
-    background-color: #bbbbbb;
-    /*
-    background:url("../../images/background.jpg") top right no-repeat;*/
-    background-attachment:fixed;
-    font-family: "Raleway";
-    color: white;
+  background-color: #bbbbbb;
+  background-attachment:fixed;
+  font-family: "Raleway";
+  color: white;
 }
 .jumbotron{ 
-    position: relative;
-    top: 50px;
-    padding-right: 50px;
-    padding-left: 50px;
-    background:0;
+  position: relative;
+  top: 50px;
+  padding-right: 50px;
+  padding-left: 50px;
+  background:0;
 }
 .modal{
-    color: black;
+  color: black;
 }
 div.pac-container {
 	z-index: 1050 !important;
@@ -35,8 +31,7 @@ h1 {
   font-variant: normal;
   font-weight: bolder;
   line-height: 26.4px;
-}
-        
+}       
 h3 {
 	font-family: Raleway;
 	font-size: 14px;
@@ -45,7 +40,6 @@ h3 {
 	font-weight: 500;
 	line-height: 15.4px;
 }
-
 p {
 	font-family: Raleway;
 	font-size: 14px;
@@ -71,68 +65,47 @@ pre {
 	line-height: 18.5714px;
 }
 #logo{
-    text-shadow: 1px 1px 1px #cccccc;
+  text-shadow: 1px 1px 1px #cccccc;
 }
 @media (max-width: 368px) {
-    #logo{
-        font-size:5em !important;
-    }
+  #logo{
+    font-size:5em !important;
+  }
 }
 @import "compass/css3";
-
 @-webkit-keyframes fade-in {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
+  0% { 
+    opacity: 0; 
+  }
+  100% { 
+    opacity: 1; 
+  }
 }
-
 .background-image {
   background:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('http://images2.alphacoders.com/667/66702.jpg') no-repeat center center fixed;
-  
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: 100% 100%;
-  
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  
   opacity: 0;
-  
   -webkit-animation-name: fade-in;
   -webkit-animation-duration: 2.5s;
   -webkit-animation-timing-function: ease-in;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-delay: 0.5s;
 }
-
 .background-image.visible {
   opacity: 1;
 }
-
-/* unvisited link */
-a:link {
-    color: #FFFFFF;
-    text-decoration: none;
+a:link, a:visited, a:hover, a:active {
+  color: #FFFFFF;
+  text-decoration: none;
 }
-
-/* visited link */
-a:visited {
-    color: #FFFFFF;
-    text-decoration: none;
+button:focus {
+  outline:0;
 }
-
-/* mouse over link */
-a:hover {
-    color: #FFFFFF;
-    text-decoration: none;
-}
-
-/* selected link */
-a:active {
-    color: #FFFFFF;
-    text-decoration: none;
-}
-button:focus {outline:0;}
