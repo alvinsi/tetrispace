@@ -109,7 +109,7 @@ $(document).ready(function() {
 	$("#submit-purchase").click(function(){
     var buyerCapitalOneID = $("#Buyer-CapitalOne").val();
 		var sellerCapitalOneID = matches[listingID].CapitalOneId;
-    var url= 'http://api.reimaginebanking.com/accounts/' + buyerCapitalOneID + '/transfers?key=4b45a24ea0a6bf25c77574c0cb55bcfe';
+    var url= 'https://api.reimaginebanking.com/accounts/' + buyerCapitalOneID + '/transfers?key=4b45a24ea0a6bf25c77574c0cb55bcfe';
     var body = {
         "medium": "balance",
         "payee_id": sellerCapitalOneID,
