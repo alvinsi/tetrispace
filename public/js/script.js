@@ -1,4 +1,3 @@
-
 var placeSearch, autocompleteQuery, autocompletePost, lat, lon, matches, listingID;
 
 /**
@@ -20,8 +19,8 @@ function initAutocomplete() {
 */
 function fillInAddressQuery() {
   var coords = autocompleteQuery.getPlace().geometry.location;
-  lat = coords.J;
-  lon = coords.M;
+  lat = coords.lat();
+  lon = coords.lng();
 }
 
 /**
@@ -29,8 +28,8 @@ function fillInAddressQuery() {
 */
 function fillInAddressPost() {
   var coords = autocompletePost.getPlace().geometry.location;
-  lat = coords.J;
-  lon = coords.M;
+  lat = coords.lat();
+  lon = coords.lng();
 }
 
 /**
@@ -89,7 +88,7 @@ $(document).ready(function() {
 		var endMonth = $("#SearchEndMonth").val();
 
 		var url = "./listings/?Latitude=" + lat + "&Longitude=" + lon + "&SpaceNeeded=" + spaceNeeded + "&StartMonth=" + startMonth + "&EndMonth=" + endMonth;
-
+    console.log(url);
 		$.ajax({
 			url: url,
 		  data: {
@@ -153,13 +152,15 @@ function setUpBuy(){
 * Display the Results of Listings
 */
 function displayResults(listings){
+  console.log(listings);
 	$("#results-display").empty();
 	if (listings.length > 0) {
-		for(var i=0; i<listings.length; i=i+1){
+    template = '<div class="row"><div class="col-md-12"><h2><b>Search Results:</b></h2></div></div><br>';
+		for(var i=0; i<listings.length; i++){
 			listing = listings[i];
-			template = '<div class="row"><div class="col-md-3"><p><b>Price:</b></p></div><div class="col-md-3"><p>$' + listing.Price + '</p></div><div class="col-md-3"><p><b>Space Available:</b></p></div><div class="col-md-3"><p>' + listing.Width + 'ft &times; ' + listing.Length + 'ft &times; ' + listing.Height + 'ft high</p></div></div><div class="row"><div class="col-md-3"><p><b>Location:</b></p></div><div class="col-md-6"><p>' + listing.Address + '</p></div><div class="col-md-3"><button type="button" class="btn btn-success proceed-to-buy" id="listing-' + i + '" data-toggle="modal" data-target="#BuyModal"><b>Proceed</b></button></div></div><hr>';
-			$('#results-display').append(template);
+			template += '<div class="row"><div class="col-md-3"><p><b>Price:</b></p></div><div class="col-md-3"><p>$' + listing.Price + '</p></div><div class="col-md-3"><p><b>Space Available:</b></p></div><div class="col-md-3"><p>' + listing.Width + 'ft &times; ' + listing.Length + 'ft &times; ' + listing.Height + 'ft high</p></div></div><div class="row"><div class="col-md-3"><p><b>Location:</b></p></div><div class="col-md-6"><p>' + listing.Address + '</p></div><div class="col-md-3"><button type="button" class="btn btn-success proceed-to-buy" id="listing-' + i + '" data-toggle="modal" data-target="#BuyModal"><b>Proceed</b></button></div></div><hr>';	
 		}
+    $('#results-display').append(template);
     setUpBuy();
 	} else {
 		$('#results-display').append('<div class ="row"><h1>No Results Were Found</h1></div>');
