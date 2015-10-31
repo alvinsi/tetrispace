@@ -88,7 +88,6 @@ $(document).ready(function() {
 		var endMonth = $("#SearchEndMonth").val();
 
 		var url = "./listings/?Latitude=" + lat + "&Longitude=" + lon + "&SpaceNeeded=" + spaceNeeded + "&StartMonth=" + startMonth + "&EndMonth=" + endMonth;
-		console.log(url);
     $.ajax({
 			url: url,
 		  data: {
