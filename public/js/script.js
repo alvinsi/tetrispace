@@ -51,7 +51,7 @@ $(document).ready(function() {
 		var phone = $("#Phone").val();
 		var capitalOneID = $("#CapitalOne").val();
 		var price = $("#Asking-Price").val();
-		var address = $("#autocomplete2").val();
+		var address = $("#autocompletePost").val();
 
 	  $.ajax({
       url: './listings/',
@@ -64,19 +64,19 @@ $(document).ready(function() {
 		    alert("Oops! Something Went Wrong, Please Try Again!")
 		  },
       data: JSON.stringify({
-	    "CapitalOneId": capitalOneID,
-	    "Name": name,
-	    "Email": email,
-	    "Address": address,
-	    "Price": price,
-	    "Height": height,
-	    "Width": width,
-	    "Length": length,
-	    "Phone": phone,
-	    "Latitude": lat,
-	    "Longitude": lon,
-	    "StartMonth": startMonth,
-	    "EndMonth": endMonth
+  	    "CapitalOneId": capitalOneID,
+  	    "Name": name,
+  	    "Email": email,
+  	    "Address": address,
+  	    "Price": price,
+  	    "Height": height,
+  	    "Width": width,
+  	    "Length": length,
+  	    "Phone": phone,
+  	    "Latitude": lat,
+  	    "Longitude": lon,
+  	    "StartMonth": startMonth,
+  	    "EndMonth": endMonth
 	  	}),
 	  	contentType: "application/json"
     });
@@ -88,7 +88,6 @@ $(document).ready(function() {
 		var endMonth = $("#SearchEndMonth").val();
 
 		var url = "./listings/?Latitude=" + lat + "&Longitude=" + lon + "&SpaceNeeded=" + spaceNeeded + "&StartMonth=" + startMonth + "&EndMonth=" + endMonth;
-    console.log(url);
 		$.ajax({
 			url: url,
 		  data: {
@@ -109,7 +108,7 @@ $(document).ready(function() {
 	$("#submit-purchase").click(function(){
     var buyerCapitalOneID = $("#Buyer-CapitalOne").val();
 		var sellerCapitalOneID = matches[listingID].CapitalOneId;
-    var url= 'http://api.reimaginebanking.com/accounts/' + buyerCapitalOneID + '/transfers?key=ef0c1299de8c6e82cb65534aabeca2d4';
+    var url= 'http://api.reimaginebanking.com/accounts/' + buyerCapitalOneID + '/transfers?key=4b45a24ea0a6bf25c77574c0cb55bcfe';
     var body = {
         "medium": "balance",
         "payee_id": sellerCapitalOneID,
@@ -127,7 +126,7 @@ $(document).ready(function() {
         alert("Payment has been processed\n" + data.message);
       },
       error: function(e) {
-        alert("Oops! Something Went Wrong, Please Try Again!")
+        alert("Oops! Something Went Wrong, Please Try Again!\n");
       },
       data: JSON.stringify(body),
       contentType: "application/json"
@@ -152,7 +151,6 @@ function setUpBuy(){
 * Display the Results of Listings
 */
 function displayResults(listings){
-  console.log(listings);
 	$("#results-display").empty();
 	if (listings.length > 0) {
     template = '<div class="row"><div class="col-md-12"><h2><b>Search Results:</b></h2></div></div><br>';
