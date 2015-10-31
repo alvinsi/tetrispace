@@ -31,22 +31,30 @@ app.get('/listings', function(req, res) {
 	var lat, lon, endMonth, startMonth;
 	var matches = [];
 
-	if (query.hasOwnProperty('Latitude') && query.Latitude.length > 0 
-				&& query.hasOwnProperty('StartMonth') && query.StartMonth.length > 0
-				&& query.hasOwnProperty('Longitude') && query.Longitude.length > 0
-				&& query.hasOwnProperty('EndMonth') && query.EndMonth.length > 0) {
-		lat = query.Latitude;
-		lon = query.Longitude;
-		startMonth = query.StartMonth;
-		endMonth = query.StartMonth;
-		spaceNeeded = query.SpaceNeeded;
-		db.listing.findAll().then(function(listings){
-			matches = filterData.filterAll(listings, spaceNeeded, startMonth, endMonth, lat, lon);
-			res.json(matches);
-		})
-	} else {
-		res.status(500).send();
-	}
+	// if (query.hasOwnProperty('Latitude') && query.Latitude.length > 0 
+	// 			&& query.hasOwnProperty('StartMonth') && query.StartMonth.length > 0
+	// 			&& query.hasOwnProperty('Longitude') && query.Longitude.length > 0
+	// 			&& query.hasOwnProperty('EndMonth') && query.EndMonth.length > 0) {
+	// 	lat = query.Latitude;
+	// 	lon = query.Longitude;
+	// 	startMonth = query.StartMonth;
+	// 	endMonth = query.StartMonth;
+	// 	spaceNeeded = query.SpaceNeeded;
+	// 	db.listing.findAll().then(function(listings){
+	// 		matches = filterData.filterAll(listings, spaceNeeded, startMonth, endMonth, lat, lon);
+	// 		res.json(matches);
+	// 	})
+	// } else {
+	// 	res.status(500).send();
+	// }
+
+	db.listing.findAll().then(function(listings){
+		if (listings) {
+			res.json(listings);
+		} else {
+			res.status(500).send();
+		}
+	});
 });
 
 /**
