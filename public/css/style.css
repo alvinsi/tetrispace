@@ -82,7 +82,7 @@ pre {
   }
 }
 .background-image {
-  background:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('http://images2.alphacoders.com/667/66702.jpg') no-repeat center center fixed;
+  background:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('https://images2.alphacoders.com/667/66702.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
